@@ -420,7 +420,7 @@ def main(args):
                     best_test_acc = test_acc
 
                     torch.save(model.state_dict(), f'{checkpt_file}_{stage}.pkl')
-                    save_pandas('./predictions.csv',preds[valtest_point:total_num_nodes])
+                    save_pandas('./predictions.csv',preds[valid_node_nums:valid_node_nums+test_node_nums])
                     count = 0
                 else:
                     count = count + args.eval_every
