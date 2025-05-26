@@ -121,6 +121,8 @@ def hg_propagate(new_g, tgt_type, num_hops, max_hops, extra_metapath, echo=False
     return new_g
 
 
+
+
 def hg_propagate_search(new_g, tgt_type, num_hops, max_hops, extra_metapath, echo=False, prop_device='cpu'):
     for hop in range(1, max_hops):
         reserve_heads = [ele[:hop] for ele in extra_metapath if len(ele) > hop]

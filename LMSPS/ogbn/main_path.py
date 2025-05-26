@@ -101,7 +101,7 @@ def main(args):
 
         # compute k-hop feature
         g = hg_propagate(g, tgt_type, args.num_hops, max_hops, extra_metapath, echo=False)
-
+        
         feats = {}
         keys = list(g.nodes[tgt_type].data.keys())
         print(f'Involved feat keys {keys}')
@@ -376,6 +376,7 @@ def main(args):
         count = 0
 
         train_times = []
+        
 
         for epoch in range(epochs):
             gc.collect()
@@ -436,131 +437,9 @@ def main(args):
 
         raw_preds = gen_output_torch(model, feats, label_feats, label_emb, all_loader, device)
 
-
+  
     return [round(best_val_acc * 100, 2), round(best_test_acc * 100, 2)]
 
-
-
-def load_model_and_predict(args, checkpoint_path, device="cuda:0"):
-    """
-    加载预训练模型并生成预测结果（包含数据预处理）
-    
-    Args:
-        args: 包含模型和数据配置的参数对象
-        checkpoint_path: 预训练模型的 `.pkl` 文件路径
-        device: 运行设备（默认 `cuda:0`）
-    
-    Returns:
-        raw_preds (Tensor): 原始预测（未经过 softmax）
-        pred_labels (Tensor): 预测的类别标签（argmax）
-    """
-    # 1. 加载数据集
-    g, init_labels, num_nodes, n_classes, train_nid, val_nid, test_nid, evaluator = load_dataset(args)
-    
-    # 2. 重新排列节点索引（与训练时一致）
-    train_node_nums = len(train_nid)
-    valid_node_nums = len(val_nid)
-    test_node_nums = len(test_nid)
-    trainval_point = train_node_nums
-    valtest_point = trainval_point + valid_node_nums
-    total_num_nodes = len(train_nid) + len(val_nid) + len(test_nid)
-
-    if total_num_nodes < num_nodes:
-        extra_nid = torch.tensor([i for i in range(num_nodes) if i not in torch.cat([train_nid, val_nid, test_nid])])
-    else:
-        extra_nid = torch.tensor([], dtype=torch.long)
-
-    init2sort = torch.cat([train_nid, val_nid, test_nid, extra_nid])
-    sort2init = torch.argsort(init2sort)
-    
-    # 3. 特征传播（与训练时一致）
-    if args.dataset in ['ogbn-proteins', 'ogbn-products']:
-        tgt_type = 'hop_0'
-        g.ndata['hop_0'] = g.ndata.pop('feat')
-        for hop in range(args.num_hops):
-            g.update_all(fn.copy_u(f'hop_{hop}', 'm'), fn.mean('m', f'hop_{hop+1}'))
-        feats = {k: g.ndata.pop(k) for k in list(g.ndata.keys())}
-    
-    elif args.dataset in ['ogbn-arxiv', 'ogbn-papers100M']:
-        tgt_type = 'P'
-        for hop in range(1, args.num_hops + 1):
-            for k in list(g.ndata.keys()):
-                if len(k) == hop:
-                    g['cite'].update_all(fn.copy_u(k, 'msg'), fn.mean('msg', f'm{k}'), etype='cite')
-                    g['cited_by'].update_all(fn.copy_u(k, 'msg'), fn.mean('msg', f't{k}'), etype='cited_by')
-        feats = {k: g.ndata.pop(k) for k in list(g.ndata.keys())}
-    
-    elif args.dataset == 'ogbn-mag':
-        tgt_type = 'P'
-        g = hg_propagate(g, tgt_type, args.num_hops, args.num_hops + 1, extra_metapath=[], echo=False)
-        feats = {k: g.nodes[tgt_type].data.pop(k) for k in list(g.nodes[tgt_type].data.keys())}
-        g = clear_hg(g, echo=False)
-    
-    # 4. 标签传播（如果需要）
-    label_feats = {}
-    if args.label_feats:
-        label_onehot = torch.zeros((num_nodes, n_classes))
-        label_onehot[train_nid] = F.one_hot(init_labels[train_nid], n_classes).float()
-        
-        if args.dataset in ['ogbn-proteins', 'ogbn-products']:
-            g.ndata['s'] = label_onehot
-            for hop in range(args.num_label_hops):
-                g.update_all(fn.copy_u('m'*hop+'s', 'msg'), fn.mean('msg', 'm'*(hop+1)+'s'))
-            label_feats = {k[:-1]: g.ndata.pop(k+'s') for k in [k for k in g.ndata.keys() if k != 's']}
-        
-        elif args.dataset in ['ogbn-arxiv', 'ogbn-papers100M']:
-            g.ndata[tgt_type] = label_onehot
-            for hop in range(1, args.num_label_hops + 1):
-                for k in list(g.ndata.keys()):
-                    if len(k) == hop:
-                        g['cite'].update_all(fn.copy_u(k, 'msg'), fn.mean('msg', f'm{k}'), etype='cite')
-                        g['cited_by'].update_all(fn.copy_u(k, 'msg'), fn.mean('msg', f't{k}'), etype='cited_by')
-            label_feats = {k[:-1]: g.ndata.pop(k) for k in list(g.ndata.keys()) if k != tgt_type}
-        
-        elif args.dataset == 'ogbn-mag':
-            g.nodes['P'].data['P'] = label_onehot
-            g = hg_propagate(g, tgt_type, args.num_label_hops, args.num_label_hops + 1, extra_metapath=[], echo=False)
-            label_feats = {k: g.nodes[tgt_type].data.pop(k) for k in list(g.nodes[tgt_type].data.keys()) if k != tgt_type}
-    
-    # 5. 重新排序特征（与训练时一致）
-    feats = {k: v[init2sort] for k, v in feats.items()}
-    label_feats = {k: v[init2sort] for k, v in label_feats.items()}
-    label_emb = torch.zeros((num_nodes, n_classes)) if not args.label_feats else (sum(label_feats.values()) / len(label_feats))[init2sort]
-    
-    # 6. 初始化 DataLoader
-    all_loader =torch.utils.data.DataLoader(torch.arange(num_nodes), batch_size=args.batch_size, shuffle=False)
-    
-    # 7. 加载模型
-    data_size = {k: v.size(-1) for k, v in feats.items()}
-    model = LMSPS(
-        args.dataset,
-        data_size, args.embed_size,
-        args.hidden, n_classes,
-        len(feats), len(label_feats), tgt_type,
-        dropout=args.dropout,
-        input_drop=args.input_drop,
-        att_drop=args.att_drop,
-        label_drop=args.label_drop,
-        n_layers_2=args.n_layers_2,
-        n_layers_3=args.n_layers_3,
-        residual=args.residual,
-        bns=args.bns, label_bns=args.label_bns,
-        path=archs[args.arch][0],
-        label_path=archs[args.arch][1],
-        eps=args.eps,
-        device=device
-    )
-    print("here")
-    model.load_state_dict(torch.load(checkpoint_path))
-    model.to(device)
-    model.eval()
-    
-    # 8. 生成预测
-    with torch.no_grad():
-        raw_preds = gen_output_torch(model, feats, label_feats, label_emb, all_loader, device)
-        pred_labels = raw_preds.argmax(dim=-1)
-    
-    return raw_preds, pred_labels
 
 def parse_args(args=None):
     parser = argparse.ArgumentParser(description='LMSPS')
@@ -583,7 +462,7 @@ def parse_args(args=None):
                         help="number of hops for propagation of raw labels")
     parser.add_argument("--label-feats", action='store_true', default=False,
                         help="whether to use the label propagated features")
-    parser.add_argument("--num-label-hops", type=int, default=4,
+    parser.add_argument("--num-label-hops", type=int, default=4,    #4
                         help="number of hops for propagation of raw features")
     ## For network structure
     parser.add_argument("--hidden", type=int, default=512)
@@ -609,8 +488,8 @@ def parse_args(args=None):
     parser.add_argument("--amp", action='store_true', default=False,
                         help="whether to amp to accelerate training with float16(half) calculation")
     parser.add_argument("--lr", type=float, default=3e-3)
-    parser.add_argument("--weight-decay", type=float, default=0)
-    parser.add_argument("--eval-every", type=int, default=1)
+    parser.add_argument("--weight-decay", type=float, default=0), #0
+    parser.add_argument("--eval-every", type=int, default=1) #1
     parser.add_argument("--batch-size", type=int, default=10000)
     parser.add_argument("--patience", type=int, default=50,  # original 100
                         help="early stop of times of the experiment")
@@ -623,7 +502,7 @@ def parse_args(args=None):
     parser.add_argument("--reload", type=str, default='')
     parser.add_argument("--identity", action='store_true', default=False)
     parser.add_argument('--arch', type=str, default='DBLP')
-    parser.add_argument("--eps", type=float, default=0)   #1e-12
+    parser.add_argument("--eps", type=float, default=0)   #1e-12 0
     parser.add_argument("--edge_mask_ratio", type=float, default=0)
 
     parser.add_argument("--mask_seed", type=int, default=1)
