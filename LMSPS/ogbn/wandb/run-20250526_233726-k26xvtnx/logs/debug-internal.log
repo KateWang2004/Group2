@@ -1,0 +1,7 @@
+{"time":"2025-05-26T23:37:27.020817089+08:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/wandb/run-20250526_233726-k26xvtnx/logs/debug-core.log"}
+{"time":"2025-05-26T23:37:27.518734815+08:00","level":"INFO","msg":"created new stream","id":"k26xvtnx"}
+{"time":"2025-05-26T23:37:27.518822109+08:00","level":"INFO","msg":"stream: started","id":"k26xvtnx"}
+{"time":"2025-05-26T23:37:27.518933547+08:00","level":"INFO","msg":"writer: Do: started","stream_id":"k26xvtnx"}
+{"time":"2025-05-26T23:37:27.519030678+08:00","level":"INFO","msg":"sender: started","stream_id":"k26xvtnx"}
+{"time":"2025-05-26T23:37:27.519211849+08:00","level":"INFO","msg":"handler: started","stream_id":"k26xvtnx"}
+{"time":"2025-05-26T23:37:28.011630565+08:00","level":"INFO","msg":"Starting system monitor"}

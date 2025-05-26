@@ -13,7 +13,16 @@ from model import *
 from utils import *
 from arch import archs
 
+import wandb
+
 def main(args):
+    if args.use_wandb:
+        wandb.init(
+            project=args.wandb_project,
+            entity=args.wandb_entity,
+            name=args.run_name,
+            config=vars(args)
+        )
     if args.seed > 0:
         set_random_seed(args.seed)
     g, init_labels, num_nodes, n_classes, train_nid, val_nid, test_nid, evaluator = load_dataset(args)
@@ -139,6 +148,7 @@ def main(args):
     device = "cuda:{}".format(args.gpu) if not args.cpu else 'cpu'
     labels_cuda = labels.long().to(device)
 
+    checkpt_folder = os.path.join(checkpt_folder, 'test')
     checkpt_file = checkpt_folder + uuid.uuid4().hex
     print(checkpt_file)
 
@@ -159,11 +169,13 @@ def main(args):
             predict_prob = raw_preds.softmax(dim=1)
 
             train_acc = evaluator(preds[:trainval_point], labels[:trainval_point])
-            val_acc = evaluator(preds[trainval_point:valtest_point], labels[trainval_point:valtest_point])
+            val_acc = evaluator(preds[trainval_point:valtest_point], labelslabel_onehot[trainval_point:valtest_point])
             test_acc = evaluator(preds[valtest_point:total_num_nodes], labels[valtest_point:total_num_nodes])
 
             print(f'Stage {stage-1} history model:\n\t' \
                 + f'Train acc {train_acc*100:.4f} Val acc {val_acc*100:.4f} Test acc {test_acc*100:.4f}')
+            
+            import pdb; pdb.set_trace()
 
             confident_mask = predict_prob.max(1)[0] > args.threshold
             val_enhance_offset  = torch.where(confident_mask[trainval_point:valtest_point])[0]
@@ -376,7 +388,7 @@ def main(args):
         count = 0
 
         train_times = []
-        
+
 
         for epoch in range(epochs):
             gc.collect()
@@ -389,6 +401,14 @@ def main(args):
             end = time.time()
             train_times.append(end - start)
             log = "Epoch {}, Time(s): {:.4f}, estimated train loss {:.4f}, acc {:.4f}\n".format(epoch, end-start, loss, acc*100)
+            if args.use_wandb:
+                wandb.log({
+                    "stage": stage,
+                    "epoch": epoch + sum(args.stages[:stage]),
+                    "train/loss": loss,
+                    "train/acc": acc,
+                    "train/time": end - start,
+                })
             torch.cuda.empty_cache()
 
             if epoch % args.eval_every == 0:
@@ -414,6 +434,14 @@ def main(args):
                     end = time.time()
                     log += f'Evaluation Time: {end-start}, Val loss: {loss_val}, Test loss: {loss_test}\n'
                     log += 'Val acc: {:.4f}, Test acc: {:.4f}\n'.format(val_acc*100, test_acc*100)
+                    if args.use_wandb:
+                        wandb.log({
+                            "val/loss": loss_val,
+                            "test/loss": loss_test,
+                            "val/acc": val_acc,
+                            "test/acc": test_acc,
+                            "eval/time": end - start,
+                        })
 
                 if val_acc > best_val_acc:
                     best_epoch = epoch
@@ -432,6 +460,13 @@ def main(args):
 
         print('average train times', sum(train_times) / len(train_times))
         print("Best Epoch {}, Val {:.4f}, Test {:.4f}".format(best_epoch, best_val_acc*100, best_test_acc*100))
+        if args.use_wandb:
+            wandb.log({
+                f"stage{stage}/best_val_acc": best_val_acc,
+                f"stage{stage}/best_test_acc": best_test_acc,
+                f"stage{stage}/best_epoch": best_epoch,
+                f"stage{stage}/avg_train_time": sum(train_times) / len(train_times)
+            })
 
         model.load_state_dict(torch.load(checkpt_file+f'_{stage}.pkl'))
 
@@ -444,13 +479,13 @@ def main(args):
 def parse_args(args=None):
     parser = argparse.ArgumentParser(description='LMSPS')
     ## For environment costruction
-    parser.add_argument("--seeds", nargs='+', type=int, default=[1],
+    parser.add_argument("--seeds", nargs='+', type=int, default=[2],
                         help="the seed used in the training")
     parser.add_argument("--dataset", type=str, default="ogbn-mag")
     parser.add_argument("--gpu", type=int, default=0)
     parser.add_argument("--cpu", action='store_true', default=False)
     parser.add_argument("--root", type=str, default='../data/')
-    parser.add_argument("--stages", nargs='+',type=int, default=[200, 200, 200, 200, 200, 200],
+    parser.add_argument("--stages", nargs='+',type=int, default=[400, 400, 400, 400, 400, 400],
                         help="The epoch setting for each stage.")
     ## For pre-processing
     parser.add_argument("--emb_path", type=str, default='../data/')
@@ -509,6 +544,15 @@ def parse_args(args=None):
     parser.add_argument("--max_mask_deg", type=int, default=None)
     parser.add_argument("--in_max_deg", type=int, default=None)
     parser.add_argument("--out_max_deg", type=int, default=None)
+
+    parser.add_argument('--use-wandb', action='store_true', default=False,
+                    help="Enable Weights & Biases logging.")
+    parser.add_argument('--wandb-project', type=str, default='LMSPS',
+                        help="WandB project name.")
+    parser.add_argument('--wandb-entity', type=str, default=None,
+                        help="WandB team/entity name (optional).")
+    parser.add_argument('--run-name', type=str, default=None,
+                        help="Optional run name.")
 
     return parser.parse_args(args)
 

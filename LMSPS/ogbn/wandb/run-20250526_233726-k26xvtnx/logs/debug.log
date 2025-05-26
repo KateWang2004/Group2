@@ -1,0 +1,22 @@
+2025-05-26 23:37:26,544 INFO    MainThread:1654164 [wandb_setup.py:_flush():70] Current SDK version is 0.19.11
+2025-05-26 23:37:26,545 INFO    MainThread:1654164 [wandb_setup.py:_flush():70] Configure stats pid to 1654164
+2025-05-26 23:37:26,545 INFO    MainThread:1654164 [wandb_setup.py:_flush():70] Loading settings from /home/wanglonghao/.config/wandb/settings
+2025-05-26 23:37:26,545 INFO    MainThread:1654164 [wandb_setup.py:_flush():70] Loading settings from /data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/wandb/settings
+2025-05-26 23:37:26,545 INFO    MainThread:1654164 [wandb_setup.py:_flush():70] Loading settings from environment variables
+2025-05-26 23:37:26,545 INFO    MainThread:1654164 [wandb_init.py:setup_run_log_directory():724] Logging user logs to /data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/wandb/run-20250526_233726-k26xvtnx/logs/debug.log
+2025-05-26 23:37:26,545 INFO    MainThread:1654164 [wandb_init.py:setup_run_log_directory():725] Logging internal logs to /data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/wandb/run-20250526_233726-k26xvtnx/logs/debug-internal.log
+2025-05-26 23:37:26,545 INFO    MainThread:1654164 [wandb_init.py:init():852] calling init triggers
+2025-05-26 23:37:26,545 INFO    MainThread:1654164 [wandb_init.py:init():857] wandb.init called with sweep_config: {}
+config: {'seeds': [2], 'dataset': 'ogbn-mag', 'gpu': 0, 'cpu': False, 'root': '../data/', 'stages': [400, 400, 400, 400, 400, 400], 'emb_path': '../data/', 'extra_embedding': '', 'embed_size': 256, 'num_hops': 6, 'label_feats': True, 'num_label_hops': 4, 'hidden': 512, 'dropout': 0.5, 'n_layers_2': 2, 'n_layers_3': 2, 'input_drop': 0.1, 'att_drop': 0.0, 'label_drop': 0.0, 'residual': True, 'bns': True, 'label_bns': True, 'amp': True, 'lr': 0.003, 'weight_decay': 0, 'eval_every': 1, 'batch_size': 10000, 'patience': 50, 'threshold': 0.6, 'gama': 5, 'start_stage': 0, 'reload': '', 'identity': False, 'arch': 'ogbn_withLabel', 'eps': 0, 'edge_mask_ratio': 0, 'mask_seed': 1, 'max_mask_deg': None, 'in_max_deg': None, 'out_max_deg': None, 'use_wandb': True, 'wandb_project': 'LMSPS', 'wandb_entity': None, 'run_name': 'ogbn_withLabel_run1', 'seed': 2, '_wandb': {}}
+2025-05-26 23:37:26,546 INFO    MainThread:1654164 [wandb_init.py:init():893] starting backend
+2025-05-26 23:37:26,546 INFO    MainThread:1654164 [wandb_init.py:init():897] sending inform_init request
+2025-05-26 23:37:27,016 INFO    MainThread:1654164 [backend.py:_multiprocessing_setup():101] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2025-05-26 23:37:27,016 INFO    MainThread:1654164 [wandb_init.py:init():907] backend started and connected
+2025-05-26 23:37:27,023 INFO    MainThread:1654164 [wandb_init.py:init():1005] updated telemetry
+2025-05-26 23:37:27,052 INFO    MainThread:1654164 [wandb_init.py:init():1029] communicating run to backend with 90.0 second timeout
+2025-05-26 23:37:28,006 INFO    MainThread:1654164 [wandb_init.py:init():1104] starting run threads in backend
+2025-05-26 23:37:28,256 INFO    MainThread:1654164 [wandb_run.py:_console_start():2573] atexit reg
+2025-05-26 23:37:28,256 INFO    MainThread:1654164 [wandb_run.py:_redirect():2421] redirect: wrap_raw
+2025-05-26 23:37:28,256 INFO    MainThread:1654164 [wandb_run.py:_redirect():2490] Wrapping output streams.
+2025-05-26 23:37:28,256 INFO    MainThread:1654164 [wandb_run.py:_redirect():2513] Redirects installed.
+2025-05-26 23:37:28,261 INFO    MainThread:1654164 [wandb_init.py:init():1150] run started, returning control to user process

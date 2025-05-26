@@ -1,0 +1,1924 @@
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:968: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  features = torch.tensor(x_dict['paper'], dtype=torch.float32).squeeze()  # Squeeze to remove the extra dimension
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:972: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  labels = torch.tensor(y_dict['paper'], dtype=torch.long).squeeze()  # Squeeze to remove the extra dimension
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:997: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  train_nid = torch.tensor(split_idx['train']['paper'], dtype=torch.long).squeeze()  # Ensure correct shape (629571,)
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:998: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  val_nid = torch.tensor(split_idx['valid']['paper'], dtype=torch.long).squeeze()  # Ensure correct shape (64879,)
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:999: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  test_nid = torch.tensor(split_idx['test']['paper'], dtype=torch.long).squeeze()  # Ensure correct shape (41939,)
+paper ['paper'] torch.Size([736389]) 349 (629571,) (64879,) (41939,)
+tensor(-1) tensor(348)
+test labels:  tensor(-1) tensor(-1)
+train labels:  tensor(0) tensor(348)
+('author', 'affiliated_with', 'institution') SparseTensor(row=tensor([   0,    0,    0,  ..., 8737, 8738, 8739]),
+             col=tensor([  30321,   67863,  183346,  ...,  868609, 1105812,  264593]),
+             size=(8740, 1134649), nnz=1043998, density=0.01%)
+('author', 'writes', 'paper') SparseTensor(row=tensor([     0,      0,      0,  ..., 736386, 736387, 736388]),
+             col=tensor([394690, 781139, 986745,  ..., 884157, 222638, 650034]),
+             size=(736389, 1134649), nnz=7145660, density=0.00%)
+('paper', 'cites', 'paper') SparseTensor(row=tensor([     0,      0,      0,  ..., 736388, 736388, 736388]),
+             col=tensor([203691, 272965, 438774,  ..., 499810, 518588, 605178]),
+             size=(736389, 736389), nnz=5416271, density=0.00%)
+('paper', 'has_topic', 'field_of_study') SparseTensor(row=tensor([    0,     1,     2,  ..., 59964, 59964, 59964]),
+             col=tensor([494386, 382565,   5989,  ..., 305263, 324451, 535856]),
+             size=(59965, 736389), nnz=7505078, density=0.02%)
+main_path.py:34: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  self_value_dict = torch.load(p)
+{'P': tensor([1., 1., 1.,  ..., 1., 1., 1.]), 'PP': tensor([0., 0., 0.,  ..., 0., 0., 0.]), 'PAP': tensor([0.0786, 0.1764, 0.2632,  ..., 0.4611, 0.0435, 0.0077]), 'PFP': tensor([0.0009, 0.0008, 0.0005,  ..., 0.0388, 0.0013, 0.0005]), 'PPP': tensor([0.0629, 0.1665, 0.0944,  ..., 0.1218, 0.1000, 0.0418]), 'PAPP': tensor([0.0244, 0.0454, 0.0082,  ..., 0.0054, 0.0043, 0.0038]), 'PFPP': tensor([2.0734e-04, 2.1798e-04, 6.7193e-05,  ..., 2.6892e-07, 1.7799e-05,
+        3.6091e-04]), 'PPAP': tensor([1.9004e-02, 3.0664e-02, 2.4110e-02,  ..., 8.3333e-02, 1.4493e-02,
+        5.5687e-05]), 'PPFP': tensor([1.9269e-04, 1.8820e-04, 1.5528e-04,  ..., 7.6667e-07, 1.7799e-04,
+        1.2428e-04]), 'PPPP': tensor([0.0106, 0.0213, 0.0030,  ..., 0.0128, 0.0000, 0.0039]), 'PAIAP': tensor([4.9320e-03, 1.4912e-03, 1.9861e-04,  ..., 8.2486e-04, 2.8050e-04,
+        2.1890e-06]), 'PAPAP': tensor([0.0393, 0.0666, 0.0934,  ..., 0.2302, 0.0167, 0.0009]), 'PAPFP': tensor([1.8617e-04, 2.4911e-04, 2.3299e-04,  ..., 1.8268e-02, 1.4175e-04,
+        4.9497e-05]), 'PAPPP': tensor([0.0129, 0.0430, 0.0326,  ..., 0.0607, 0.0061, 0.0013]), 'PFPAP': tensor([1.8210e-04, 2.2694e-04, 2.5330e-04,  ..., 1.8327e-02, 1.0434e-04,
+        1.0811e-05]), 'PFPFP': tensor([9.8662e-05, 8.3183e-05, 5.7425e-05,  ..., 5.0333e-03, 1.4056e-04,
+        6.2239e-05]), 'PFPPP': tensor([0.0002, 0.0002, 0.0001,  ..., 0.0048, 0.0001, 0.0003]), 'PPAPP': tensor([0.0142, 0.0564, 0.0166,  ..., 0.0272, 0.0123, 0.0103]), 'PPFPP': tensor([0.0005, 0.0005, 0.0004,  ..., 0.0008, 0.0002, 0.0006]), 'PPPAP': tensor([0.0117, 0.0415, 0.0379,  ..., 0.0756, 0.0081, 0.0004]), 'PPPFP': tensor([0.0002, 0.0002, 0.0002,  ..., 0.0048, 0.0002, 0.0001]), 'PPPPP': tensor([0.0128, 0.0521, 0.0215,  ..., 0.0494, 0.0202, 0.0060])}
+Current num hops = 6
+Involved feat keys ['P', 'PA', 'PF', 'PP', 'PAI', 'PAP', 'PFP', 'PPA', 'PPF', 'PPP', 'PAIA', 'PAPA', 'PAPF', 'PAPP', 'PFPA', 'PFPF', 'PFPP', 'PPAI', 'PPAP', 'PPFP', 'PPPA', 'PPPF', 'PPPP', 'PAIAI', 'PAIAP', 'PAPAI', 'PAPAP', 'PAPFP', 'PAPPA', 'PAPPF', 'PAPPP', 'PFPAI', 'PFPAP', 'PFPFP', 'PFPPA', 'PFPPF', 'PFPPP', 'PPAIA', 'PPAPA', 'PPAPF', 'PPAPP', 'PPFPA', 'PPFPF', 'PPFPP', 'PPPAI', 'PPPAP', 'PPPFP', 'PPPPA', 'PPPPF', 'PPPPP', 'PAIAIA', 'PAIAPA', 'PAIAPF', 'PAIAPP', 'PAPAIA', 'PAPAPA', 'PAPAPF', 'PAPAPP', 'PAPFPA', 'PAPFPF', 'PAPFPP', 'PAPPAI', 'PAPPAP', 'PAPPFP', 'PAPPPA', 'PAPPPF', 'PAPPPP', 'PFPAIA', 'PFPAPA', 'PFPAPF', 'PFPAPP', 'PFPFPA', 'PFPFPF', 'PFPFPP', 'PFPPAI', 'PFPPAP', 'PFPPFP', 'PFPPPA', 'PFPPPF', 'PFPPPP', 'PPAIAI', 'PPAIAP', 'PPAPAI', 'PPAPAP', 'PPAPFP', 'PPAPPA', 'PPAPPF', 'PPAPPP', 'PPFPAI', 'PPFPAP', 'PPFPFP', 'PPFPPA', 'PPFPPF', 'PPFPPP', 'PPPAIA', 'PPPAPA', 'PPPAPF', 'PPPAPP', 'PPPFPA', 'PPPFPF', 'PPPFPP', 'PPPPAI', 'PPPPAP', 'PPPPFP', 'PPPPPA', 'PPPPPF', 'PPPPPP', 'PAIAIAI', 'PAIAIAP', 'PAIAPAI', 'PAIAPAP', 'PAIAPFP', 'PAIAPPA', 'PAIAPPF', 'PAIAPPP', 'PAPAIAI', 'PAPAIAP', 'PAPAPAI', 'PAPAPAP', 'PAPAPFP', 'PAPAPPA', 'PAPAPPF', 'PAPAPPP', 'PAPFPAI', 'PAPFPAP', 'PAPFPFP', 'PAPFPPA', 'PAPFPPF', 'PAPFPPP', 'PAPPAIA', 'PAPPAPA', 'PAPPAPF', 'PAPPAPP', 'PAPPFPA', 'PAPPFPF', 'PAPPFPP', 'PAPPPAI', 'PAPPPAP', 'PAPPPFP', 'PAPPPPA', 'PAPPPPF', 'PAPPPPP', 'PFPAIAI', 'PFPAIAP', 'PFPAPAI', 'PFPAPAP', 'PFPAPFP', 'PFPAPPA', 'PFPAPPF', 'PFPAPPP', 'PFPFPAI', 'PFPFPAP', 'PFPFPFP', 'PFPFPPA', 'PFPFPPF', 'PFPFPPP', 'PFPPAIA', 'PFPPAPA', 'PFPPAPF', 'PFPPAPP', 'PFPPFPA', 'PFPPFPF', 'PFPPFPP', 'PFPPPAI', 'PFPPPAP', 'PFPPPFP', 'PFPPPPA', 'PFPPPPF', 'PFPPPPP', 'PPAIAIA', 'PPAIAPA', 'PPAIAPF', 'PPAIAPP', 'PPAPAIA', 'PPAPAPA', 'PPAPAPF', 'PPAPAPP', 'PPAPFPA', 'PPAPFPF', 'PPAPFPP', 'PPAPPAI', 'PPAPPAP', 'PPAPPFP', 'PPAPPPA', 'PPAPPPF', 'PPAPPPP', 'PPFPAIA', 'PPFPAPA', 'PPFPAPF', 'PPFPAPP', 'PPFPFPA', 'PPFPFPF', 'PPFPFPP', 'PPFPPAI', 'PPFPPAP', 'PPFPPFP', 'PPFPPPA', 'PPFPPPF', 'PPFPPPP', 'PPPAIAI', 'PPPAIAP', 'PPPAPAI', 'PPPAPAP', 'PPPAPFP', 'PPPAPPA', 'PPPAPPF', 'PPPAPPP', 'PPPFPAI', 'PPPFPAP', 'PPPFPFP', 'PPPFPPA', 'PPPFPPF', 'PPPFPPP', 'PPPPAIA', 'PPPPAPA', 'PPPPAPF', 'PPPPAPP', 'PPPPFPA', 'PPPPFPF', 'PPPPFPP', 'PPPPPAI', 'PPPPPAP', 'PPPPPFP', 'PPPPPPA', 'PPPPPPF', 'PPPPPPP']
+Time used for feat prop 0:01:53.764147
+main_path.py:144: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scalar = torch.cuda.amp.GradScaler()
+./output/ogbn-mag/f313dcaa09514190b249649bbc9129bc
+Current num label hops = 4
+Involved label keys ['P', 'PP', 'PAP', 'PFP', 'PPP', 'PAPP', 'PFPP', 'PPAP', 'PPFP', 'PPPP', 'PAIAP', 'PAPAP', 'PAPFP', 'PAPPP', 'PFPAP', 'PFPFP', 'PFPPP', 'PPAPP', 'PPFPP', 'PPPAP', 'PPPFP', 'PPPPP']
+PP tensor(0.4140) tensor(0.3447) tensor(0.0310) tensor(4.7541) tensor(5.4032) tensor(13.7788) tensor(20.0875) tensor(1233.5474) tensor(12.0133) tensor(65.4972)
+PAP tensor(0.4168) tensor(0.3521) tensor(0.0848) tensor(3.9198) tensor(4.6239) tensor(13.7186) tensor(18.3751) tensor(391.4094) tensor(15.2263) tensor(71.4271)
+PFP tensor(0.2873) tensor(0.2295) tensor(0.0001) tensor(3.1708) tensor(3.3180) tensor(6.5155) tensor(25.2222) tensor(240908.5000) tensor(4.4371) tensor(51.3343)
+PPP tensor(0.4024) tensor(0.3490) tensor(0.0066) tensor(3.2265) tensor(3.1920) tensor(13.4686) tensor(15.2996) tensor(5992.2368) tensor(-1.0836) tensor(76.0439)
+PAPP tensor(0.4184) tensor(0.3690) tensor(0.0044) tensor(2.7743) tensor(2.9861) tensor(13.3141) tensor(13.4015) tensor(9385.2490) tensor(7.0932) tensor(79.1625)
+PFPP tensor(0.2625) tensor(0.2119) tensor(2.3844e-05) tensor(3.2763) tensor(3.3621) tensor(6.5878) tensor(23.8581) tensor(1100862.7500) tensor(2.5508) tensor(50.2668)
+PPAP tensor(0.4163) tensor(0.3682) tensor(0.0037) tensor(2.7986) tensor(2.8423) tensor(13.3619) tensor(13.0651) tensor(11163.9434) tensor(1.5364) tensor(79.0550)
+PPFP tensor(0.2766) tensor(0.2373) tensor(2.3844e-05) tensor(3.2293) tensor(3.3183) tensor(6.4689) tensor(16.5840) tensor(1160023.7500) tensor(2.6826) tensor(50.0798)
+PPPP tensor(0.4056) tensor(0.3530) tensor(0.0030) tensor(2.5627) tensor(2.6194) tensor(12.4881) tensor(14.8943) tensor(13506.8203) tensor(2.1657) tensor(79.4788)
+PAIAP tensor(0.1489) tensor(0.1203) tensor(0.0435) tensor(4.5378) tensor(4.6740) tensor(10.9612) tensor(23.7702) tensor(242.5001) tensor(2.9131) tensor(58.6007)
+PAPAP tensor(0.4098) tensor(0.3523) tensor(0.0704) tensor(3.3156) tensor(3.7144) tensor(13.3073) tensor(16.3443) tensor(482.4666) tensor(10.7367) tensor(75.0844)
+PAPFP tensor(0.2767) tensor(0.2263) tensor(2.3844e-05) tensor(3.2229) tensor(3.3344) tensor(6.3899) tensor(22.2504) tensor(1160223.5000) tensor(3.3429) tensor(49.5631)
+PAPPP tensor(0.4068) tensor(0.3592) tensor(0.0027) tensor(2.4100) tensor(2.5587) tensor(12.1859) tensor(13.2390) tensor(14734.1045) tensor(5.8150) tensor(80.2235)
+PFPAP tensor(0.2720) tensor(0.2141) tensor(7.1532e-05) tensor(3.2541) tensor(3.3846) tensor(6.4645) tensor(27.0118) tensor(380090.6875) tensor(3.8553) tensor(49.6613)
+PFPFP tensor(0.2112) tensor(0.1493) tensor(0.) tensor(3.7470) tensor(3.8610) tensor(6.0233) tensor(41.4560) tensor(inf) tensor(2.9542) tensor(37.7921)
+PFPPP tensor(0.2553) tensor(0.2008) tensor(2.3844e-05) tensor(3.3068) tensor(3.3968) tensor(6.5762) tensor(27.1416) tensor(1070546.2500) tensor(2.6494) tensor(49.7158)
+PPAPP tensor(0.3915) tensor(0.3471) tensor(0.0022) tensor(2.5439) tensor(2.6198) tensor(12.1623) tensor(12.7650) tensor(17364.9473) tensor(2.8995) tensor(79.0840)
+PPFPP tensor(0.2526) tensor(0.2129) tensor(0.) tensor(3.3485) tensor(3.3767) tensor(6.5449) tensor(18.6139) tensor(inf) tensor(0.8352) tensor(48.8379)
+PPPAP tensor(0.4109) tensor(0.3625) tensor(0.0026) tensor(2.3481) tensor(2.4946) tensor(12.1740) tensor(13.3707) tensor(15567.6533) tensor(5.8726) tensor(80.7118)
+PPPFP tensor(0.2718) tensor(0.2258) tensor(2.3844e-05) tensor(3.2455) tensor(3.3485) tensor(6.3981) tensor(20.3632) tensor(1139899.3750) tensor(3.0769) tensor(49.2750)
+PPPPP tensor(0.3755) tensor(0.3365) tensor(0.0048) tensor(2.5683) tensor(2.6151) tensor(11.5107) tensor(11.5884) tensor(7696.4194) tensor(1.7888) tensor(77.6878)
+{'PP', 'PAIAP', 'PAPPP', 'PPFPP', 'PFPFP', 'PPAP', 'PFPAP', 'PPPFP', 'PPPP', 'PPPPP', 'PFPPP', 'PAPFP', 'PAPP', 'PAP', 'PPP', 'PFPP', 'PAPAP', 'PPAPP', 'PPFP', 'PFP', 'PPPAP'}
+tensor(0.6826)
+tensor(0.6243)
+tensor(0.1241)
+label_emb tensor(0.4322) tensor(0.3745) tensor(0.0010) tensor(2.3537) tensor(2.5790) tensor(7.0104) tensor(15.3961) tensor(44110.7227) tensor(8.7358) tensor(66.4260)
+{'label_emb'}
+tensor(0.4322)
+tensor(0.3745)
+tensor(0.0010)
+LMSPS(
+  (embedings): ParameterDict(
+      (P): Parameter containing: [torch.cuda.FloatTensor of size 128x256 (cuda:0)]
+      (PAPP): Parameter containing: [torch.cuda.FloatTensor of size 128x256 (cuda:0)]
+      (PAIAP): Parameter containing: [torch.cuda.FloatTensor of size 128x256 (cuda:0)]
+      (PAPFP): Parameter containing: [torch.cuda.FloatTensor of size 128x256 (cuda:0)]
+      (PFPPP): Parameter containing: [torch.cuda.FloatTensor of size 128x256 (cuda:0)]
+      (PAIAPP): Parameter containing: [torch.cuda.FloatTensor of size 128x256 (cuda:0)]
+      (PFPPAP): Parameter containing: [torch.cuda.FloatTensor of size 128x256 (cuda:0)]
+      (PAIAPAP): Parameter containing: [torch.cuda.FloatTensor of size 128x256 (cuda:0)]
+      (PAPAPPP): Parameter containing: [torch.cuda.FloatTensor of size 128x256 (cuda:0)]
+      (PAPPPAP): Parameter containing: [torch.cuda.FloatTensor of size 128x256 (cuda:0)]
+      (PFPPPPP): Parameter containing: [torch.cuda.FloatTensor of size 128x256 (cuda:0)]
+      (PPPAPAP): Parameter containing: [torch.cuda.FloatTensor of size 128x256 (cuda:0)]
+  )
+  (feat_project_layers): Sequential(
+    (0): Conv1d1x1()
+    (1): LayerNorm((23, 512), eps=1e-05, elementwise_affine=True)
+    (2): PReLU(num_parameters=1)
+    (3): Dropout(p=0.5, inplace=False)
+    (4): Conv1d1x1()
+    (5): LayerNorm((23, 512), eps=1e-05, elementwise_affine=True)
+    (6): PReLU(num_parameters=1)
+    (7): Dropout(p=0.5, inplace=False)
+  )
+  (concat_project_layer): Linear(in_features=11776, out_features=512, bias=True)
+  (res_fc): Linear(in_features=256, out_features=512, bias=False)
+  (lr_output): Sequential(
+    (0): Linear(in_features=512, out_features=512, bias=False)
+    (1): BatchNorm1d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): PReLU(num_parameters=1)
+    (3): Dropout(p=0.5, inplace=False)
+    (4): Linear(in_features=512, out_features=349, bias=False)
+    (5): BatchNorm1d(349, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  )
+  (label_fc): Sequential(
+    (0): Linear(in_features=349, out_features=512, bias=False)
+    (1): BatchNorm1d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): PReLU(num_parameters=1)
+    (3): Dropout(p=0.5, inplace=False)
+    (4): Linear(in_features=512, out_features=349, bias=True)
+  )
+  (label_drop): Dropout(p=0.0, inplace=False)
+  (prelu): PReLU(num_parameters=1)
+  (dropout): Dropout(p=0.5, inplace=False)
+  (input_drop): Dropout(p=0.1, inplace=False)
+)
+# Params: 16470044
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:493: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Epoch 0, Time(s): 10.8631, estimated train loss 2.6120, acc 40.6790
+Evaluation Time: 1.2266566753387451, Val loss: 2.833078622817993, Test loss: 7.435240745544434
+Val acc: 44.7032, Test acc: 0.1168
+Best Epoch 0,Val 44.7032, Test 0.1168
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:493: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Epoch 1, Time(s): 7.6133, estimated train loss 1.9992, acc 47.6737
+Evaluation Time: 0.631655216217041, Val loss: 1.96620512008667, Test loss: 10.403087615966797
+Val acc: 48.0834, Test acc: 0.1311
+Best Epoch 1,Val 48.0834, Test 0.1311
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:493: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Epoch 2, Time(s): 7.6524, estimated train loss 1.8524, acc 50.4826
+Evaluation Time: 0.6310544013977051, Val loss: 1.8676289319992065, Test loss: 10.743368148803711
+Val acc: 49.5615, Test acc: 0.1431
+Best Epoch 2,Val 49.5615, Test 0.1431
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:493: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Epoch 3, Time(s): 7.6163, estimated train loss 1.7595, acc 52.0810
+Evaluation Time: 0.7032394409179688, Val loss: 1.7983986139297485, Test loss: 11.056879043579102
+Val acc: 50.8315, Test acc: 0.1454
+Best Epoch 3,Val 50.8315, Test 0.1454
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:493: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Epoch 4, Time(s): 7.6046, estimated train loss 1.6925, acc 53.3327
+Evaluation Time: 0.7392871379852295, Val loss: 1.7315350770950317, Test loss: 11.494707107543945
+Val acc: 51.9999, Test acc: 0.1073
+Best Epoch 4,Val 51.9999, Test 0.1073
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:493: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Epoch 5, Time(s): 7.6510, estimated train loss 1.6437, acc 54.2185
+Evaluation Time: 0.7894680500030518, Val loss: 1.6986230611801147, Test loss: 11.67984390258789
+Val acc: 52.4361, Test acc: 0.1407
+Best Epoch 5,Val 52.4361, Test 0.1407
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:493: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Epoch 6, Time(s): 7.5882, estimated train loss 1.6057, acc 54.9916
+Evaluation Time: 0.6905097961425781, Val loss: 1.67582106590271, Test loss: 11.804320335388184
+Val acc: 53.3855, Test acc: 0.1311
+Best Epoch 6,Val 53.3855, Test 0.1311
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:493: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Epoch 7, Time(s): 7.6218, estimated train loss 1.5769, acc 55.4379
+Evaluation Time: 0.6218314170837402, Val loss: 1.6426076889038086, Test loss: 12.392695426940918
+Val acc: 53.6707, Test acc: 0.1240
+Best Epoch 7,Val 53.6707, Test 0.1240
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:493: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Epoch 8, Time(s): 7.6873, estimated train loss 1.5518, acc 55.9837
+Evaluation Time: 0.6361756324768066, Val loss: 1.657663106918335, Test loss: 12.325850486755371
+Val acc: 53.2499, Test acc: 0.1001
+Best Epoch 7,Val 53.6707, Test 0.1240
+Epoch 9, Time(s): 7.6674, estimated train loss 1.5324, acc 56.3598
+Evaluation Time: 0.7316668033599854, Val loss: 1.627308964729309, Test loss: 12.628583908081055
+Val acc: 53.6260, Test acc: 0.1073
+Best Epoch 7,Val 53.6707, Test 0.1240
+Epoch 10, Time(s): 7.5388, estimated train loss 1.5150, acc 56.5798
+Evaluation Time: 0.6108381748199463, Val loss: 1.6211998462677002, Test loss: 12.672965049743652
+Val acc: 53.8079, Test acc: 0.1097
+Best Epoch 10,Val 53.8079, Test 0.1097
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:493: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Epoch 11, Time(s): 7.6016, estimated train loss 1.5002, acc 56.9146
+Evaluation Time: 0.5898022651672363, Val loss: 1.5908229351043701, Test loss: 12.998148918151855
+Val acc: 54.5261, Test acc: 0.0978
+Best Epoch 11,Val 54.5261, Test 0.0978
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:493: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Epoch 12, Time(s): 7.5629, estimated train loss 1.4843, acc 57.2339
+Evaluation Time: 0.6202104091644287, Val loss: 1.6050151586532593, Test loss: 12.962567329406738
+Val acc: 54.2626, Test acc: 0.1073
+Best Epoch 11,Val 54.5261, Test 0.0978
+Epoch 13, Time(s): 7.5678, estimated train loss 1.4722, acc 57.4850
+Evaluation Time: 0.6317563056945801, Val loss: 1.6106007099151611, Test loss: 13.188143730163574
+Val acc: 53.7462, Test acc: 0.1097
+Best Epoch 11,Val 54.5261, Test 0.0978
+Epoch 14, Time(s): 7.6077, estimated train loss 1.4611, acc 57.7133
+Evaluation Time: 0.6148355007171631, Val loss: 1.569055199623108, Test loss: 13.445898056030273
+Val acc: 54.7172, Test acc: 0.1145
+Best Epoch 14,Val 54.7172, Test 0.1145
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:493: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Epoch 15, Time(s): 7.5283, estimated train loss 1.4500, acc 57.9152
+Evaluation Time: 0.6197259426116943, Val loss: 1.5853909254074097, Test loss: 13.450746536254883
+Val acc: 54.5323, Test acc: 0.1049
+Best Epoch 14,Val 54.7172, Test 0.1145
+Epoch 16, Time(s): 7.5117, estimated train loss 1.4412, acc 58.1035
+Evaluation Time: 0.6409413814544678, Val loss: 1.582648515701294, Test loss: 13.181416511535645
+Val acc: 54.7065, Test acc: 0.1145
+Best Epoch 14,Val 54.7172, Test 0.1145
+Epoch 17, Time(s): 7.5735, estimated train loss 1.4322, acc 58.2662
+Evaluation Time: 0.6155092716217041, Val loss: 1.5726540088653564, Test loss: 13.578166961669922
+Val acc: 54.5492, Test acc: 0.1168
+Best Epoch 14,Val 54.7172, Test 0.1145
+Epoch 18, Time(s): 7.6108, estimated train loss 1.4225, acc 58.5430
+Evaluation Time: 0.6528871059417725, Val loss: 1.5689036846160889, Test loss: 13.972513198852539
+Val acc: 54.8668, Test acc: 0.1025
+Best Epoch 18,Val 54.8668, Test 0.1025
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:493: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Epoch 19, Time(s): 7.5872, estimated train loss 1.4146, acc 58.6466
+Evaluation Time: 0.6164793968200684, Val loss: 1.5612938404083252, Test loss: 13.698881149291992
+Val acc: 54.8020, Test acc: 0.1168
+Best Epoch 18,Val 54.8668, Test 0.1025
+Epoch 20, Time(s): 7.6964, estimated train loss 1.4070, acc 58.7986
+Evaluation Time: 0.6231913566589355, Val loss: 1.5843902826309204, Test loss: 13.871450424194336
+Val acc: 54.0298, Test acc: 0.1097
+Best Epoch 18,Val 54.8668, Test 0.1025
+Epoch 21, Time(s): 7.5923, estimated train loss 1.3996, acc 58.9214
+Evaluation Time: 0.5956606864929199, Val loss: 1.5618845224380493, Test loss: 14.184758186340332
+Val acc: 54.9053, Test acc: 0.1073
+Best Epoch 21,Val 54.9053, Test 0.1073
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:493: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Epoch 22, Time(s): 7.7060, estimated train loss 1.3931, acc 59.0575
+Evaluation Time: 0.602381706237793, Val loss: 1.5742576122283936, Test loss: 13.94471549987793
+Val acc: 54.3381, Test acc: 0.1049
+Best Epoch 21,Val 54.9053, Test 0.1073
+Epoch 23, Time(s): 7.7581, estimated train loss 1.3867, acc 59.1403
+Evaluation Time: 0.6026997566223145, Val loss: 1.5419833660125732, Test loss: 14.24147891998291
+Val acc: 55.5742, Test acc: 0.1049
+Best Epoch 23,Val 55.5742, Test 0.1049
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:493: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Epoch 24, Time(s): 7.5968, estimated train loss 1.3799, acc 59.2820
+Evaluation Time: 0.6359922885894775, Val loss: 1.5565769672393799, Test loss: 14.182999610900879
+Val acc: 55.0579, Test acc: 0.0978
+Best Epoch 23,Val 55.5742, Test 0.1049
+Epoch 25, Time(s): 7.6877, estimated train loss 1.3747, acc 59.4194
+Evaluation Time: 0.5975487232208252, Val loss: 1.5729068517684937, Test loss: 13.896056175231934
+Val acc: 54.7157, Test acc: 0.0978
+Best Epoch 23,Val 55.5742, Test 0.1049
+Epoch 26, Time(s): 7.6551, estimated train loss 1.3696, acc 59.6007
+Evaluation Time: 0.6084952354431152, Val loss: 1.5429219007492065, Test loss: 14.242226600646973
+Val acc: 55.1796, Test acc: 0.1025
+Best Epoch 23,Val 55.5742, Test 0.1049
+Epoch 27, Time(s): 7.6887, estimated train loss 1.3639, acc 59.7081
+Evaluation Time: 0.614030122756958, Val loss: 1.5393646955490112, Test loss: 14.550780296325684
+Val acc: 55.3276, Test acc: 0.1049
+Best Epoch 23,Val 55.5742, Test 0.1049
+Epoch 28, Time(s): 7.5814, estimated train loss 1.3581, acc 59.7550
+Evaluation Time: 0.6107594966888428, Val loss: 1.5495034456253052, Test loss: 14.312786102294922
+Val acc: 55.1935, Test acc: 0.0978
+Best Epoch 23,Val 55.5742, Test 0.1049
+Epoch 29, Time(s): 7.6300, estimated train loss 1.3541, acc 59.8496
+Evaluation Time: 0.6194610595703125, Val loss: 1.5209866762161255, Test loss: 14.388704299926758
+Val acc: 55.8301, Test acc: 0.1168
+Best Epoch 29,Val 55.8301, Test 0.1168
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:493: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Epoch 30, Time(s): 7.6786, estimated train loss 1.3486, acc 59.9915
+Evaluation Time: 0.5760648250579834, Val loss: 1.5424730777740479, Test loss: 14.688220977783203
+Val acc: 55.3446, Test acc: 0.0978
+Best Epoch 29,Val 55.8301, Test 0.1168
+Epoch 31, Time(s): 7.6036, estimated train loss 1.3439, acc 60.0393
+Evaluation Time: 0.6332798004150391, Val loss: 1.5470582246780396, Test loss: 14.316689491271973
+Val acc: 54.9546, Test acc: 0.1192
+Best Epoch 29,Val 55.8301, Test 0.1168
+Epoch 32, Time(s): 7.5530, estimated train loss 1.3389, acc 60.1278
+Evaluation Time: 0.5932438373565674, Val loss: 1.5410302877426147, Test loss: 14.865596771240234
+Val acc: 55.0872, Test acc: 0.1001
+Best Epoch 29,Val 55.8301, Test 0.1168
+Epoch 33, Time(s): 7.5763, estimated train loss 1.3353, acc 60.2491
+Evaluation Time: 0.5997154712677002, Val loss: 1.5461738109588623, Test loss: 14.399333000183105
+Val acc: 55.1303, Test acc: 0.0930
+Best Epoch 29,Val 55.8301, Test 0.1168
+Epoch 34, Time(s): 8.7415, estimated train loss 1.3322, acc 60.3117
+Evaluation Time: 0.6302130222320557, Val loss: 1.5519980192184448, Test loss: 14.659967422485352
+Val acc: 55.0301, Test acc: 0.1001
+Best Epoch 29,Val 55.8301, Test 0.1168
+Epoch 35, Time(s): 8.1535, estimated train loss 1.3271, acc 60.4068
+Evaluation Time: 0.5817482471466064, Val loss: 1.5416308641433716, Test loss: 14.772665023803711
+Val acc: 55.0810, Test acc: 0.1025
+Best Epoch 29,Val 55.8301, Test 0.1168
+Epoch 36, Time(s): 7.5576, estimated train loss 1.3228, acc 60.4963
+Evaluation Time: 0.5979475975036621, Val loss: 1.5326908826828003, Test loss: 14.751514434814453
+Val acc: 55.3554, Test acc: 0.1025
+Best Epoch 29,Val 55.8301, Test 0.1168
+Epoch 37, Time(s): 7.4871, estimated train loss 1.3207, acc 60.5234
+Evaluation Time: 0.6447000503540039, Val loss: 1.5310027599334717, Test loss: 14.680740356445312
+Val acc: 55.5758, Test acc: 0.1192
+Best Epoch 29,Val 55.8301, Test 0.1168
+Epoch 38, Time(s): 7.4831, estimated train loss 1.3156, acc 60.6178
+Evaluation Time: 0.6164300441741943, Val loss: 1.5263789892196655, Test loss: 15.00593090057373
+Val acc: 55.7099, Test acc: 0.1049
+Best Epoch 29,Val 55.8301, Test 0.1168
+Epoch 39, Time(s): 7.4971, estimated train loss 1.3126, acc 60.7018
+Evaluation Time: 0.6304831504821777, Val loss: 1.5263351202011108, Test loss: 15.106833457946777
+Val acc: 55.7253, Test acc: 0.1001
+Best Epoch 29,Val 55.8301, Test 0.1168
+Epoch 40, Time(s): 7.5706, estimated train loss 1.3098, acc 60.7744
+Evaluation Time: 0.6099789142608643, Val loss: 1.5217628479003906, Test loss: 14.78926944732666
+Val acc: 55.6343, Test acc: 0.1025
+Best Epoch 29,Val 55.8301, Test 0.1168
+Epoch 41, Time(s): 7.5488, estimated train loss 1.3054, acc 60.9320
+Evaluation Time: 0.649815559387207, Val loss: 1.5433218479156494, Test loss: 15.19558048248291
+Val acc: 55.2074, Test acc: 0.0954
+Best Epoch 29,Val 55.8301, Test 0.1168
+Epoch 42, Time(s): 7.4944, estimated train loss 1.3022, acc 60.9291
+Evaluation Time: 0.6138486862182617, Val loss: 1.5253971815109253, Test loss: 15.134293556213379
+Val acc: 55.7946, Test acc: 0.0978
+Best Epoch 29,Val 55.8301, Test 0.1168
+Epoch 43, Time(s): 7.5525, estimated train loss 1.2989, acc 61.0506
+Evaluation Time: 0.6241850852966309, Val loss: 1.5274957418441772, Test loss: 15.217485427856445
+Val acc: 55.5557, Test acc: 0.1097
+Best Epoch 29,Val 55.8301, Test 0.1168
+Epoch 44, Time(s): 7.6324, estimated train loss 1.2960, acc 61.1061
+Evaluation Time: 0.6334052085876465, Val loss: 1.5560826063156128, Test loss: 15.296504020690918
+Val acc: 54.7065, Test acc: 0.0930
+Best Epoch 29,Val 55.8301, Test 0.1168
+Epoch 45, Time(s): 7.7207, estimated train loss 1.2925, acc 61.1696
+Evaluation Time: 0.6040594577789307, Val loss: 1.5259908437728882, Test loss: 15.318620681762695
+Val acc: 55.4694, Test acc: 0.1001
+Best Epoch 29,Val 55.8301, Test 0.1168
+Epoch 46, Time(s): 7.5105, estimated train loss 1.2877, acc 61.2546
+Evaluation Time: 0.61452317237854, Val loss: 1.5268009901046753, Test loss: 15.081988334655762
+Val acc: 55.8347, Test acc: 0.1145
+Best Epoch 46,Val 55.8347, Test 0.1145
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:493: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Epoch 47, Time(s): 7.4875, estimated train loss 1.2875, acc 61.2565
+Evaluation Time: 0.6317694187164307, Val loss: 1.5170786380767822, Test loss: 15.377752304077148
+Val acc: 55.9441, Test acc: 0.1001
+Best Epoch 47,Val 55.9441, Test 0.1001
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:493: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Epoch 48, Time(s): 7.5427, estimated train loss 1.2828, acc 61.3178
+Evaluation Time: 0.6082198619842529, Val loss: 1.5318665504455566, Test loss: 15.477851867675781
+Val acc: 55.4925, Test acc: 0.1145
+Best Epoch 47,Val 55.9441, Test 0.1001
+Epoch 49, Time(s): 7.5584, estimated train loss 1.2811, acc 61.3945
+Evaluation Time: 0.5804867744445801, Val loss: 1.5222915410995483, Test loss: 15.45822811126709
+Val acc: 55.8178, Test acc: 0.1192
+Best Epoch 47,Val 55.9441, Test 0.1001
+Epoch 50, Time(s): 7.5570, estimated train loss 1.2778, acc 61.4731
+Evaluation Time: 0.5999035835266113, Val loss: 1.5347068309783936, Test loss: 15.289730072021484
+Val acc: 55.5157, Test acc: 0.1192
+Best Epoch 47,Val 55.9441, Test 0.1001
+Epoch 51, Time(s): 7.5193, estimated train loss 1.2756, acc 61.4825
+Evaluation Time: 0.6246120929718018, Val loss: 1.5301947593688965, Test loss: 15.472564697265625
+Val acc: 55.4771, Test acc: 0.0954
+Best Epoch 47,Val 55.9441, Test 0.1001
+Epoch 52, Time(s): 7.6565, estimated train loss 1.2737, acc 61.5846
+Evaluation Time: 0.6234791278839111, Val loss: 1.5269441604614258, Test loss: 15.473937034606934
+Val acc: 55.8023, Test acc: 0.0906
+Best Epoch 47,Val 55.9441, Test 0.1001
+Epoch 53, Time(s): 7.5485, estimated train loss 1.2704, acc 61.6344
+Evaluation Time: 0.5995121002197266, Val loss: 1.5218366384506226, Test loss: 15.524205207824707
+Val acc: 55.8640, Test acc: 0.1001
+Best Epoch 47,Val 55.9441, Test 0.1001
+Epoch 54, Time(s): 7.4577, estimated train loss 1.2683, acc 61.6914
+Evaluation Time: 0.5764405727386475, Val loss: 1.5236903429031372, Test loss: 15.577885627746582
+Val acc: 55.8085, Test acc: 0.1001
+Best Epoch 47,Val 55.9441, Test 0.1001
+Epoch 55, Time(s): 7.4979, estimated train loss 1.2647, acc 61.7522
+Evaluation Time: 0.6060302257537842, Val loss: 1.5375208854675293, Test loss: 15.697793006896973
+Val acc: 55.5604, Test acc: 0.0906
+Best Epoch 47,Val 55.9441, Test 0.1001
+Epoch 56, Time(s): 7.4667, estimated train loss 1.2630, acc 61.7535
+Evaluation Time: 0.6116082668304443, Val loss: 1.5266941785812378, Test loss: 15.672127723693848
+Val acc: 55.5696, Test acc: 0.0906
+Best Epoch 47,Val 55.9441, Test 0.1001
+Epoch 57, Time(s): 7.4579, estimated train loss 1.2615, acc 61.8300
+Evaluation Time: 0.5993354320526123, Val loss: 1.522415280342102, Test loss: 15.329967498779297
+Val acc: 55.8686, Test acc: 0.1097
+Best Epoch 47,Val 55.9441, Test 0.1001
+Epoch 58, Time(s): 7.5311, estimated train loss 1.2572, acc 61.8853
+Evaluation Time: 0.6200597286224365, Val loss: 1.5276613235473633, Test loss: 15.642313957214355
+Val acc: 55.7422, Test acc: 0.1073
+Best Epoch 47,Val 55.9441, Test 0.1001
+Epoch 59, Time(s): 7.5484, estimated train loss 1.2554, acc 61.9614
+Evaluation Time: 0.5856845378875732, Val loss: 1.542708158493042, Test loss: 15.58882999420166
+Val acc: 55.3985, Test acc: 0.1025
+Best Epoch 47,Val 55.9441, Test 0.1001
+Epoch 60, Time(s): 7.5318, estimated train loss 1.2539, acc 62.0164
+Evaluation Time: 0.6136019229888916, Val loss: 1.5353999137878418, Test loss: 15.97038745880127
+Val acc: 55.6528, Test acc: 0.0954
+Best Epoch 47,Val 55.9441, Test 0.1001
+Epoch 61, Time(s): 7.4972, estimated train loss 1.2523, acc 62.0564
+Evaluation Time: 0.5818638801574707, Val loss: 1.5280792713165283, Test loss: 15.737122535705566
+Val acc: 55.8332, Test acc: 0.1097
+Best Epoch 47,Val 55.9441, Test 0.1001
+Epoch 62, Time(s): 7.5547, estimated train loss 1.2499, acc 62.0947
+Evaluation Time: 0.6166608333587646, Val loss: 1.5198794603347778, Test loss: 15.839384078979492
+Val acc: 56.1214, Test acc: 0.0978
+Best Epoch 62,Val 56.1214, Test 0.0978
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:493: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Epoch 63, Time(s): 7.5255, estimated train loss 1.2467, acc 62.1736
+Evaluation Time: 0.5903220176696777, Val loss: 1.5254547595977783, Test loss: 15.936724662780762
+Val acc: 55.6621, Test acc: 0.1025
+Best Epoch 62,Val 56.1214, Test 0.0978
+Epoch 64, Time(s): 7.4671, estimated train loss 1.2451, acc 62.1930
+Evaluation Time: 0.6081085205078125, Val loss: 1.5295960903167725, Test loss: 15.977230072021484
+Val acc: 55.6174, Test acc: 0.0906
+Best Epoch 62,Val 56.1214, Test 0.0978
+Epoch 65, Time(s): 7.5089, estimated train loss 1.2434, acc 62.1943
+Evaluation Time: 0.6209285259246826, Val loss: 1.5369499921798706, Test loss: 15.8442964553833
+Val acc: 55.5943, Test acc: 0.0835
+Best Epoch 62,Val 56.1214, Test 0.0978
+Epoch 66, Time(s): 7.4618, estimated train loss 1.2416, acc 62.2583
+Evaluation Time: 0.6205220222473145, Val loss: 1.5255297422409058, Test loss: 16.149747848510742
+Val acc: 55.7977, Test acc: 0.0978
+Best Epoch 62,Val 56.1214, Test 0.0978
+Epoch 67, Time(s): 7.4886, estimated train loss 1.2398, acc 62.3456
+Evaluation Time: 0.613943338394165, Val loss: 1.52122163772583, Test loss: 15.891300201416016
+Val acc: 56.0752, Test acc: 0.1073
+Best Epoch 62,Val 56.1214, Test 0.0978
+Epoch 68, Time(s): 7.4826, estimated train loss 1.2356, acc 62.3712
+Evaluation Time: 0.6216027736663818, Val loss: 1.5164837837219238, Test loss: 16.19254493713379
+Val acc: 55.9241, Test acc: 0.1097
+Best Epoch 62,Val 56.1214, Test 0.0978
+Epoch 69, Time(s): 7.5361, estimated train loss 1.2354, acc 62.4365
+Evaluation Time: 0.6212642192840576, Val loss: 1.5400830507278442, Test loss: 15.76201343536377
+Val acc: 55.2952, Test acc: 0.1049
+Best Epoch 62,Val 56.1214, Test 0.0978
+Epoch 70, Time(s): 7.6966, estimated train loss 1.2323, acc 62.4629
+Evaluation Time: 0.6385819911956787, Val loss: 1.5448905229568481, Test loss: 15.978209495544434
+Val acc: 55.3184, Test acc: 0.0930
+Best Epoch 62,Val 56.1214, Test 0.0978
+Epoch 71, Time(s): 7.5251, estimated train loss 1.2315, acc 62.4940
+Evaluation Time: 0.6356346607208252, Val loss: 1.5223835706710815, Test loss: 16.046724319458008
+Val acc: 56.0690, Test acc: 0.0954
+Best Epoch 62,Val 56.1214, Test 0.0978
+Epoch 72, Time(s): 7.4616, estimated train loss 1.2297, acc 62.4868
+Evaluation Time: 0.5923659801483154, Val loss: 1.5200176239013672, Test loss: 15.980995178222656
+Val acc: 56.1861, Test acc: 0.1049
+Best Epoch 72,Val 56.1861, Test 0.1049
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:493: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Epoch 73, Time(s): 7.5317, estimated train loss 1.2275, acc 62.5779
+Evaluation Time: 0.6145737171173096, Val loss: 1.528570294380188, Test loss: 16.257537841796875
+Val acc: 55.8517, Test acc: 0.1025
+Best Epoch 72,Val 56.1861, Test 0.1049
+Epoch 74, Time(s): 7.5936, estimated train loss 1.2242, acc 62.6276
+Evaluation Time: 0.6013338565826416, Val loss: 1.5498404502868652, Test loss: 16.199121475219727
+Val acc: 55.1411, Test acc: 0.1121
+Best Epoch 72,Val 56.1861, Test 0.1049
+Epoch 75, Time(s): 7.5352, estimated train loss 1.2238, acc 62.7021
+Evaluation Time: 0.6483025550842285, Val loss: 1.5363186597824097, Test loss: 16.45354461669922
+Val acc: 55.7931, Test acc: 0.0978
+Best Epoch 72,Val 56.1861, Test 0.1049
+Epoch 76, Time(s): 7.7517, estimated train loss 1.2222, acc 62.6697
+Evaluation Time: 0.6109499931335449, Val loss: 1.52210533618927, Test loss: 16.103683471679688
+Val acc: 56.1183, Test acc: 0.1121
+Best Epoch 72,Val 56.1861, Test 0.1049
+Epoch 77, Time(s): 7.6416, estimated train loss 1.2180, acc 62.8072
+Evaluation Time: 0.6091995239257812, Val loss: 1.536332130432129, Test loss: 16.563100814819336
+Val acc: 55.5511, Test acc: 0.0906
+Best Epoch 72,Val 56.1861, Test 0.1049
+Epoch 78, Time(s): 7.5449, estimated train loss 1.2169, acc 62.7807
+Evaluation Time: 0.5901660919189453, Val loss: 1.5360163450241089, Test loss: 15.957059860229492
+Val acc: 55.6143, Test acc: 0.1145
+Best Epoch 72,Val 56.1861, Test 0.1049
+Epoch 79, Time(s): 7.5150, estimated train loss 1.2167, acc 62.8293
+Evaluation Time: 0.605457067489624, Val loss: 1.5232983827590942, Test loss: 16.072303771972656
+Val acc: 55.9688, Test acc: 0.0954
+Best Epoch 72,Val 56.1861, Test 0.1049
+Epoch 80, Time(s): 7.5429, estimated train loss 1.2149, acc 62.8028
+Evaluation Time: 0.6217727661132812, Val loss: 1.528738260269165, Test loss: 16.35379409790039
+Val acc: 55.9950, Test acc: 0.0882
+Best Epoch 72,Val 56.1861, Test 0.1049
+Epoch 81, Time(s): 7.4870, estimated train loss 1.2136, acc 62.8349
+Evaluation Time: 0.600679874420166, Val loss: 1.5251445770263672, Test loss: 16.325708389282227
+Val acc: 55.8070, Test acc: 0.1025
+Best Epoch 72,Val 56.1861, Test 0.1049
+Epoch 82, Time(s): 7.5162, estimated train loss 1.2108, acc 62.9503
+Evaluation Time: 0.5995190143585205, Val loss: 1.5324326753616333, Test loss: 16.640029907226562
+Val acc: 55.7623, Test acc: 0.0906
+Best Epoch 72,Val 56.1861, Test 0.1049
+Epoch 83, Time(s): 7.5271, estimated train loss 1.2104, acc 62.9862
+Evaluation Time: 0.6244187355041504, Val loss: 1.5212488174438477, Test loss: 16.349098205566406
+Val acc: 56.3649, Test acc: 0.0954
+Best Epoch 83,Val 56.3649, Test 0.0954
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:493: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Epoch 84, Time(s): 7.5302, estimated train loss 1.2089, acc 63.0099
+Evaluation Time: 0.5905163288116455, Val loss: 1.520625352859497, Test loss: 16.35169219970703
+Val acc: 56.1568, Test acc: 0.1001
+Best Epoch 83,Val 56.3649, Test 0.0954
+Epoch 85, Time(s): 7.4499, estimated train loss 1.2056, acc 63.0653
+Evaluation Time: 0.653449535369873, Val loss: 1.5199965238571167, Test loss: 16.586347579956055
+Val acc: 56.1553, Test acc: 0.1001
+Best Epoch 83,Val 56.3649, Test 0.0954
+Epoch 86, Time(s): 7.5659, estimated train loss 1.2049, acc 63.1085
+Evaluation Time: 0.6357033252716064, Val loss: 1.548164963722229, Test loss: 16.61566734313965
+Val acc: 55.3538, Test acc: 0.0906
+Best Epoch 83,Val 56.3649, Test 0.0954
+Epoch 87, Time(s): 7.5659, estimated train loss 1.2042, acc 63.1176
+Evaluation Time: 0.6139223575592041, Val loss: 1.5411462783813477, Test loss: 16.430465698242188
+Val acc: 55.6020, Test acc: 0.1025
+Best Epoch 83,Val 56.3649, Test 0.0954
+Epoch 88, Time(s): 7.5359, estimated train loss 1.2004, acc 63.1521
+Evaluation Time: 0.5889620780944824, Val loss: 1.524209976196289, Test loss: 16.799392700195312
+Val acc: 56.1322, Test acc: 0.0835
+Best Epoch 83,Val 56.3649, Test 0.0954
+Epoch 89, Time(s): 7.5141, estimated train loss 1.2012, acc 63.1563
+Evaluation Time: 0.5976881980895996, Val loss: 1.5264275074005127, Test loss: 16.915565490722656
+Val acc: 56.0104, Test acc: 0.0906
+Best Epoch 83,Val 56.3649, Test 0.0954
+Epoch 90, Time(s): 7.4989, estimated train loss 1.1993, acc 63.2504
+Evaluation Time: 0.6094121932983398, Val loss: 1.524823784828186, Test loss: 16.686098098754883
+Val acc: 56.1584, Test acc: 0.0978
+Best Epoch 83,Val 56.3649, Test 0.0954
+Epoch 91, Time(s): 7.5366, estimated train loss 1.1976, acc 63.2154
+Evaluation Time: 0.63301682472229, Val loss: 1.5186535120010376, Test loss: 16.551586151123047
+Val acc: 56.2385, Test acc: 0.1049
+Best Epoch 83,Val 56.3649, Test 0.0954
+Epoch 92, Time(s): 7.5889, estimated train loss 1.1967, acc 63.3233
+Evaluation Time: 0.5942754745483398, Val loss: 1.5434156656265259, Test loss: 16.751420974731445
+Val acc: 55.4355, Test acc: 0.0930
+Best Epoch 83,Val 56.3649, Test 0.0954
+Epoch 93, Time(s): 7.6444, estimated train loss 1.1929, acc 63.4195
+Evaluation Time: 0.6081447601318359, Val loss: 1.5334850549697876, Test loss: 16.77901840209961
+Val acc: 56.0752, Test acc: 0.0906
+Best Epoch 83,Val 56.3649, Test 0.0954
+Epoch 94, Time(s): 7.5272, estimated train loss 1.1936, acc 63.3695
+Evaluation Time: 0.5890216827392578, Val loss: 1.529006004333496, Test loss: 16.578487396240234
+Val acc: 55.8609, Test acc: 0.1145
+Best Epoch 83,Val 56.3649, Test 0.0954
+Epoch 95, Time(s): 7.5276, estimated train loss 1.1908, acc 63.4318
+Evaluation Time: 0.5995273590087891, Val loss: 1.5387766361236572, Test loss: 16.86480140686035
+Val acc: 55.7206, Test acc: 0.1001
+Best Epoch 83,Val 56.3649, Test 0.0954
+Epoch 96, Time(s): 7.6291, estimated train loss 1.1896, acc 63.4826
+Evaluation Time: 0.5940935611724854, Val loss: 1.5380734205245972, Test loss: 16.922441482543945
+Val acc: 55.7376, Test acc: 0.0835
+Best Epoch 83,Val 56.3649, Test 0.0954
+Epoch 97, Time(s): 7.4017, estimated train loss 1.1881, acc 63.4723
+Evaluation Time: 0.5828027725219727, Val loss: 1.532749891281128, Test loss: 16.42328643798828
+Val acc: 56.0104, Test acc: 0.1025
+Best Epoch 83,Val 56.3649, Test 0.0954
+Epoch 98, Time(s): 7.5157, estimated train loss 1.1876, acc 63.4461
+Evaluation Time: 0.6307032108306885, Val loss: 1.527877688407898, Test loss: 16.892087936401367
+Val acc: 55.9303, Test acc: 0.1001
+Best Epoch 83,Val 56.3649, Test 0.0954
+Epoch 99, Time(s): 7.5145, estimated train loss 1.1858, acc 63.4966
+Evaluation Time: 0.6066646575927734, Val loss: 1.531337022781372, Test loss: 16.821117401123047
+Val acc: 56.0073, Test acc: 0.0954
+Best Epoch 83,Val 56.3649, Test 0.0954
+Epoch 100, Time(s): 7.4601, estimated train loss 1.1851, acc 63.4926
+Evaluation Time: 0.5840988159179688, Val loss: 1.5298151969909668, Test loss: 16.846216201782227
+Val acc: 56.2632, Test acc: 0.0882
+Best Epoch 83,Val 56.3649, Test 0.0954
+Epoch 101, Time(s): 7.4847, estimated train loss 1.1829, acc 63.6408
+Evaluation Time: 0.5851514339447021, Val loss: 1.530033826828003, Test loss: 16.98824119567871
+Val acc: 55.9657, Test acc: 0.0906
+Best Epoch 83,Val 56.3649, Test 0.0954
+Epoch 102, Time(s): 7.4405, estimated train loss 1.1818, acc 63.6205
+Evaluation Time: 0.6083197593688965, Val loss: 1.5390424728393555, Test loss: 17.14455223083496
+Val acc: 55.5711, Test acc: 0.1025
+Best Epoch 83,Val 56.3649, Test 0.0954
+Epoch 103, Time(s): 7.4174, estimated train loss 1.1787, acc 63.6538
+Evaluation Time: 0.59922194480896, Val loss: 1.5378962755203247, Test loss: 16.920629501342773
+Val acc: 55.7900, Test acc: 0.0978
+Best Epoch 83,Val 56.3649, Test 0.0954
+Epoch 104, Time(s): 7.4283, estimated train loss 1.1793, acc 63.6946
+Evaluation Time: 0.6183218955993652, Val loss: 1.5349740982055664, Test loss: 17.15378189086914
+Val acc: 55.9657, Test acc: 0.1025
+Best Epoch 83,Val 56.3649, Test 0.0954
+Epoch 105, Time(s): 7.4469, estimated train loss 1.1784, acc 63.7364
+Evaluation Time: 0.6068434715270996, Val loss: 1.5342872142791748, Test loss: 16.934917449951172
+Val acc: 55.7623, Test acc: 0.1192
+Best Epoch 83,Val 56.3649, Test 0.0954
+Epoch 106, Time(s): 7.5053, estimated train loss 1.1766, acc 63.7018
+Evaluation Time: 0.6291458606719971, Val loss: 1.5302995443344116, Test loss: 17.14805793762207
+Val acc: 56.0844, Test acc: 0.1001
+Best Epoch 83,Val 56.3649, Test 0.0954
+Epoch 107, Time(s): 7.5188, estimated train loss 1.1765, acc 63.7069
+Evaluation Time: 0.6169652938842773, Val loss: 1.5396251678466797, Test loss: 17.06060218811035
+Val acc: 55.5542, Test acc: 0.0954
+Best Epoch 83,Val 56.3649, Test 0.0954
+Epoch 108, Time(s): 7.5571, estimated train loss 1.1752, acc 63.7555
+Evaluation Time: 0.5917260646820068, Val loss: 1.5456007719039917, Test loss: 17.208404541015625
+Val acc: 55.7037, Test acc: 0.0954
+Best Epoch 83,Val 56.3649, Test 0.0954
+Epoch 109, Time(s): 7.5324, estimated train loss 1.1750, acc 63.7833
+Evaluation Time: 0.6304366588592529, Val loss: 1.5344792604446411, Test loss: 16.85051918029785
+Val acc: 55.8979, Test acc: 0.1097
+Best Epoch 83,Val 56.3649, Test 0.0954
+Epoch 110, Time(s): 7.4526, estimated train loss 1.1736, acc 63.7815
+Evaluation Time: 0.577723503112793, Val loss: 1.5320967435836792, Test loss: 17.20191192626953
+Val acc: 56.3757, Test acc: 0.1001
+Best Epoch 110,Val 56.3757, Test 0.1001
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:493: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Epoch 111, Time(s): 7.4913, estimated train loss 1.1724, acc 63.8535
+Evaluation Time: 0.5757081508636475, Val loss: 1.5356323719024658, Test loss: 17.50452995300293
+Val acc: 55.9256, Test acc: 0.0930
+Best Epoch 110,Val 56.3757, Test 0.1001
+Epoch 112, Time(s): 7.4491, estimated train loss 1.1685, acc 63.9027
+Evaluation Time: 0.5747826099395752, Val loss: 1.5318562984466553, Test loss: 17.0087890625
+Val acc: 56.1306, Test acc: 0.1192
+Best Epoch 110,Val 56.3757, Test 0.1001
+Epoch 113, Time(s): 7.5101, estimated train loss 1.1683, acc 63.8930
+Evaluation Time: 0.5959343910217285, Val loss: 1.528950810432434, Test loss: 17.53490447998047
+Val acc: 56.0412, Test acc: 0.1049
+Best Epoch 110,Val 56.3757, Test 0.1001
+Epoch 114, Time(s): 7.4985, estimated train loss 1.1674, acc 63.9550
+Evaluation Time: 0.5928373336791992, Val loss: 1.5395036935806274, Test loss: 17.374271392822266
+Val acc: 55.6914, Test acc: 0.0978
+Best Epoch 110,Val 56.3757, Test 0.1001
+Epoch 115, Time(s): 7.4730, estimated train loss 1.1662, acc 64.0403
+Evaluation Time: 0.602200984954834, Val loss: 1.5322166681289673, Test loss: 16.916719436645508
+Val acc: 56.0813, Test acc: 0.1073
+Best Epoch 110,Val 56.3757, Test 0.1001
+Epoch 116, Time(s): 7.4987, estimated train loss 1.1649, acc 63.9675
+Evaluation Time: 0.5997745990753174, Val loss: 1.5317752361297607, Test loss: 17.18702507019043
+Val acc: 56.0351, Test acc: 0.1073
+Best Epoch 110,Val 56.3757, Test 0.1001
+Epoch 117, Time(s): 7.4792, estimated train loss 1.1635, acc 64.0217
+Evaluation Time: 0.6037046909332275, Val loss: 1.5318549871444702, Test loss: 17.457792282104492
+Val acc: 55.9858, Test acc: 0.0954
+Best Epoch 110,Val 56.3757, Test 0.1001
+Epoch 118, Time(s): 7.4737, estimated train loss 1.1634, acc 63.9467
+Evaluation Time: 0.5906178951263428, Val loss: 1.5425992012023926, Test loss: 17.19161033630371
+Val acc: 55.9565, Test acc: 0.1001
+Best Epoch 110,Val 56.3757, Test 0.1001
+Epoch 119, Time(s): 7.4930, estimated train loss 1.1599, acc 64.1704
+Evaluation Time: 0.5773153305053711, Val loss: 1.5300085544586182, Test loss: 17.35940170288086
+Val acc: 56.3356, Test acc: 0.1049
+Best Epoch 110,Val 56.3757, Test 0.1001
+Epoch 120, Time(s): 7.5074, estimated train loss 1.1598, acc 64.1704
+Evaluation Time: 0.5693943500518799, Val loss: 1.5454590320587158, Test loss: 17.36827850341797
+Val acc: 55.9549, Test acc: 0.0954
+Best Epoch 110,Val 56.3757, Test 0.1001
+Epoch 121, Time(s): 7.5746, estimated train loss 1.1591, acc 64.1391
+Evaluation Time: 0.6057226657867432, Val loss: 1.543667197227478, Test loss: 17.00119400024414
+Val acc: 55.8994, Test acc: 0.1025
+Best Epoch 110,Val 56.3757, Test 0.1001
+Epoch 122, Time(s): 7.5252, estimated train loss 1.1580, acc 64.1297
+Evaluation Time: 0.5883400440216064, Val loss: 1.5360357761383057, Test loss: 17.562984466552734
+Val acc: 56.1260, Test acc: 0.1073
+Best Epoch 110,Val 56.3757, Test 0.1001
+Epoch 123, Time(s): 7.5990, estimated train loss 1.1584, acc 64.1130
+Evaluation Time: 0.6017932891845703, Val loss: 1.5341383218765259, Test loss: 17.801807403564453
+Val acc: 56.1646, Test acc: 0.0978
+Best Epoch 110,Val 56.3757, Test 0.1001
+Epoch 124, Time(s): 7.5846, estimated train loss 1.1570, acc 64.2115
+Evaluation Time: 0.601391077041626, Val loss: 1.5484669208526611, Test loss: 17.20482063293457
+Val acc: 55.7268, Test acc: 0.0930
+Best Epoch 110,Val 56.3757, Test 0.1001
+Epoch 125, Time(s): 7.4764, estimated train loss 1.1558, acc 64.2209
+Evaluation Time: 0.6160075664520264, Val loss: 1.5439701080322266, Test loss: 17.353281021118164
+Val acc: 55.7345, Test acc: 0.0930
+Best Epoch 110,Val 56.3757, Test 0.1001
+Epoch 126, Time(s): 7.5284, estimated train loss 1.1534, acc 64.2898
+Evaluation Time: 0.5705218315124512, Val loss: 1.544577717781067, Test loss: 17.426843643188477
+Val acc: 55.6991, Test acc: 0.0930
+Best Epoch 110,Val 56.3757, Test 0.1001
+Epoch 127, Time(s): 7.4649, estimated train loss 1.1526, acc 64.3038
+Evaluation Time: 0.5807547569274902, Val loss: 1.5400077104568481, Test loss: 17.510717391967773
+Val acc: 55.8655, Test acc: 0.1097
+Best Epoch 110,Val 56.3757, Test 0.1001
+Epoch 128, Time(s): 7.4970, estimated train loss 1.1525, acc 64.2661
+Evaluation Time: 0.5761353969573975, Val loss: 1.5368540287017822, Test loss: 17.671667098999023
+Val acc: 56.1183, Test acc: 0.1049
+Best Epoch 110,Val 56.3757, Test 0.1001
+Epoch 129, Time(s): 7.4746, estimated train loss 1.1500, acc 64.2963
+Evaluation Time: 0.5776045322418213, Val loss: 1.5455230474472046, Test loss: 17.34625816345215
+Val acc: 55.8702, Test acc: 0.1001
+Best Epoch 110,Val 56.3757, Test 0.1001
+Epoch 130, Time(s): 7.5223, estimated train loss 1.1491, acc 64.3640
+Evaluation Time: 0.6081969738006592, Val loss: 1.5158145427703857, Test loss: 17.494123458862305
+Val acc: 56.6855, Test acc: 0.1001
+Best Epoch 130,Val 56.6855, Test 0.1001
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:493: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+Epoch 131, Time(s): 7.4753, estimated train loss 1.1481, acc 64.3689
+Evaluation Time: 0.5769612789154053, Val loss: 1.5206557512283325, Test loss: 17.365985870361328
+Val acc: 56.5221, Test acc: 0.0930
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 132, Time(s): 7.4417, estimated train loss 1.1495, acc 64.3446
+Evaluation Time: 0.576714038848877, Val loss: 1.5451856851577759, Test loss: 17.655311584472656
+Val acc: 55.9349, Test acc: 0.0954
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 133, Time(s): 7.4711, estimated train loss 1.1459, acc 64.4920
+Evaluation Time: 0.5832455158233643, Val loss: 1.5428171157836914, Test loss: 17.81174087524414
+Val acc: 55.9950, Test acc: 0.1049
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 134, Time(s): 7.4466, estimated train loss 1.1446, acc 64.4588
+Evaluation Time: 0.5984959602355957, Val loss: 1.5520164966583252, Test loss: 17.434194564819336
+Val acc: 55.7407, Test acc: 0.0954
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 135, Time(s): 7.4700, estimated train loss 1.1445, acc 64.4612
+Evaluation Time: 0.5885505676269531, Val loss: 1.54830002784729, Test loss: 17.38098907470703
+Val acc: 55.8316, Test acc: 0.0906
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 136, Time(s): 7.5623, estimated train loss 1.1433, acc 64.4892
+Evaluation Time: 0.5832705497741699, Val loss: 1.5483276844024658, Test loss: 17.60764503479004
+Val acc: 56.0243, Test acc: 0.0954
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 137, Time(s): 7.4207, estimated train loss 1.1414, acc 64.5169
+Evaluation Time: 0.5882594585418701, Val loss: 1.5476975440979004, Test loss: 17.420595169067383
+Val acc: 55.6050, Test acc: 0.0978
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 138, Time(s): 7.5778, estimated train loss 1.1418, acc 64.5463
+Evaluation Time: 0.6108357906341553, Val loss: 1.542974829673767, Test loss: 17.687448501586914
+Val acc: 56.0351, Test acc: 0.1001
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 139, Time(s): 7.7213, estimated train loss 1.1401, acc 64.5657
+Evaluation Time: 0.583937406539917, Val loss: 1.5316648483276367, Test loss: 17.519092559814453
+Val acc: 56.3757, Test acc: 0.0954
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 140, Time(s): 7.4902, estimated train loss 1.1416, acc 64.5452
+Evaluation Time: 0.6052517890930176, Val loss: 1.5436912775039673, Test loss: 17.83298110961914
+Val acc: 56.2031, Test acc: 0.0978
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 141, Time(s): 7.5832, estimated train loss 1.1391, acc 64.6038
+Evaluation Time: 0.5860779285430908, Val loss: 1.5357227325439453, Test loss: 17.850326538085938
+Val acc: 56.2879, Test acc: 0.0954
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 142, Time(s): 7.5292, estimated train loss 1.1381, acc 64.5879
+Evaluation Time: 0.5870265960693359, Val loss: 1.5416195392608643, Test loss: 17.76837158203125
+Val acc: 55.9734, Test acc: 0.1001
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 143, Time(s): 7.4704, estimated train loss 1.1379, acc 64.6431
+Evaluation Time: 0.6458051204681396, Val loss: 1.538557529449463, Test loss: 17.995376586914062
+Val acc: 56.1861, Test acc: 0.0906
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 144, Time(s): 7.5585, estimated train loss 1.1367, acc 64.6831
+Evaluation Time: 0.6138076782226562, Val loss: 1.549930453300476, Test loss: 17.684284210205078
+Val acc: 55.7576, Test acc: 0.0906
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 145, Time(s): 7.5083, estimated train loss 1.1345, acc 64.7211
+Evaluation Time: 0.6170969009399414, Val loss: 1.5372934341430664, Test loss: 17.729312896728516
+Val acc: 56.0798, Test acc: 0.1073
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 146, Time(s): 7.6344, estimated train loss 1.1348, acc 64.6420
+Evaluation Time: 0.6294999122619629, Val loss: 1.5538313388824463, Test loss: 17.797462463378906
+Val acc: 55.7284, Test acc: 0.0978
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 147, Time(s): 7.6959, estimated train loss 1.1324, acc 64.8145
+Evaluation Time: 0.6137876510620117, Val loss: 1.5602226257324219, Test loss: 17.84430503845215
+Val acc: 55.5018, Test acc: 0.0954
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 148, Time(s): 7.4711, estimated train loss 1.1325, acc 64.7147
+Evaluation Time: 0.5911054611206055, Val loss: 1.540299892425537, Test loss: 18.254060745239258
+Val acc: 56.1260, Test acc: 0.0906
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 149, Time(s): 7.4817, estimated train loss 1.1302, acc 64.7822
+Evaluation Time: 0.579268217086792, Val loss: 1.5366524457931519, Test loss: 18.1273136138916
+Val acc: 56.2509, Test acc: 0.0978
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 150, Time(s): 7.5033, estimated train loss 1.1296, acc 64.8038
+Evaluation Time: 0.5836753845214844, Val loss: 1.5336570739746094, Test loss: 17.937108993530273
+Val acc: 56.2802, Test acc: 0.1049
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 151, Time(s): 7.4689, estimated train loss 1.1291, acc 64.8245
+Evaluation Time: 0.6002447605133057, Val loss: 1.536242127418518, Test loss: 18.165576934814453
+Val acc: 56.3264, Test acc: 0.1025
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 152, Time(s): 7.4853, estimated train loss 1.1304, acc 64.7636
+Evaluation Time: 0.6055238246917725, Val loss: 1.5423521995544434, Test loss: 18.02041244506836
+Val acc: 56.1615, Test acc: 0.0906
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 153, Time(s): 7.5438, estimated train loss 1.1280, acc 64.8397
+Evaluation Time: 0.6145725250244141, Val loss: 1.5361398458480835, Test loss: 18.243064880371094
+Val acc: 56.4497, Test acc: 0.1073
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 154, Time(s): 7.5024, estimated train loss 1.1292, acc 64.8646
+Evaluation Time: 0.5817973613739014, Val loss: 1.5457651615142822, Test loss: 18.455692291259766
+Val acc: 56.1923, Test acc: 0.0954
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 155, Time(s): 7.5665, estimated train loss 1.1267, acc 64.8820
+Evaluation Time: 0.6290571689605713, Val loss: 1.5500237941741943, Test loss: 18.2814884185791
+Val acc: 55.9935, Test acc: 0.0954
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 156, Time(s): 7.5582, estimated train loss 1.1243, acc 64.9538
+Evaluation Time: 0.6050395965576172, Val loss: 1.54804265499115, Test loss: 18.191038131713867
+Val acc: 56.1276, Test acc: 0.0930
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 157, Time(s): 7.5839, estimated train loss 1.1251, acc 64.9360
+Evaluation Time: 0.5824017524719238, Val loss: 1.5458712577819824, Test loss: 18.423521041870117
+Val acc: 56.2139, Test acc: 0.0954
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 158, Time(s): 7.6622, estimated train loss 1.1230, acc 65.0025
+Evaluation Time: 0.589592456817627, Val loss: 1.539021372795105, Test loss: 18.018585205078125
+Val acc: 56.4821, Test acc: 0.0906
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 159, Time(s): 7.7098, estimated train loss 1.1243, acc 64.9665
+Evaluation Time: 0.5930325984954834, Val loss: 1.5439320802688599, Test loss: 18.040437698364258
+Val acc: 56.4220, Test acc: 0.0978
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 160, Time(s): 7.5270, estimated train loss 1.1237, acc 65.0186
+Evaluation Time: 0.610135555267334, Val loss: 1.5425411462783813, Test loss: 18.252859115600586
+Val acc: 56.3742, Test acc: 0.0978
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 161, Time(s): 7.8327, estimated train loss 1.1200, acc 65.1550
+Evaluation Time: 0.6356351375579834, Val loss: 1.5390326976776123, Test loss: 18.330768585205078
+Val acc: 56.4374, Test acc: 0.0930
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 162, Time(s): 7.5061, estimated train loss 1.1193, acc 65.1247
+Evaluation Time: 0.6367201805114746, Val loss: 1.5428197383880615, Test loss: 18.484636306762695
+Val acc: 56.3618, Test acc: 0.0954
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 163, Time(s): 7.4879, estimated train loss 1.1188, acc 65.1223
+Evaluation Time: 0.6122937202453613, Val loss: 1.5402758121490479, Test loss: 18.27745819091797
+Val acc: 56.3896, Test acc: 0.1073
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 164, Time(s): 7.5354, estimated train loss 1.1198, acc 65.0559
+Evaluation Time: 0.5983500480651855, Val loss: 1.5450737476348877, Test loss: 17.92184066772461
+Val acc: 56.1368, Test acc: 0.1001
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 165, Time(s): 7.4360, estimated train loss 1.1183, acc 65.0985
+Evaluation Time: 0.6350643634796143, Val loss: 1.5518230199813843, Test loss: 18.199859619140625
+Val acc: 56.1291, Test acc: 0.0954
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 166, Time(s): 8.5588, estimated train loss 1.1177, acc 65.1132
+Evaluation Time: 0.6147761344909668, Val loss: 1.5392364263534546, Test loss: 17.910661697387695
+Val acc: 56.4620, Test acc: 0.1025
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 167, Time(s): 7.5250, estimated train loss 1.1167, acc 65.1390
+Evaluation Time: 0.603104829788208, Val loss: 1.5454798936843872, Test loss: 18.508588790893555
+Val acc: 56.5098, Test acc: 0.1025
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 168, Time(s): 7.5232, estimated train loss 1.1167, acc 65.1555
+Evaluation Time: 0.6013936996459961, Val loss: 1.5487244129180908, Test loss: 18.311582565307617
+Val acc: 56.2740, Test acc: 0.1025
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 169, Time(s): 7.5393, estimated train loss 1.1151, acc 65.1142
+Evaluation Time: 0.6202683448791504, Val loss: 1.5485272407531738, Test loss: 18.438386917114258
+Val acc: 55.9935, Test acc: 0.0954
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 170, Time(s): 7.5388, estimated train loss 1.1138, acc 65.2336
+Evaluation Time: 0.5921590328216553, Val loss: 1.5526633262634277, Test loss: 18.25803565979004
+Val acc: 55.9919, Test acc: 0.0930
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 171, Time(s): 7.4552, estimated train loss 1.1140, acc 65.1296
+Evaluation Time: 0.6140351295471191, Val loss: 1.5630995035171509, Test loss: 18.42656898498535
+Val acc: 55.8486, Test acc: 0.0978
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 172, Time(s): 7.5834, estimated train loss 1.1123, acc 65.3022
+Evaluation Time: 0.5883669853210449, Val loss: 1.5566644668579102, Test loss: 18.51713752746582
+Val acc: 55.9164, Test acc: 0.0811
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 173, Time(s): 7.5500, estimated train loss 1.1131, acc 65.2525
+Evaluation Time: 0.5806910991668701, Val loss: 1.5454732179641724, Test loss: 18.26944923400879
+Val acc: 56.2262, Test acc: 0.1121
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 174, Time(s): 7.7966, estimated train loss 1.1113, acc 65.2968
+Evaluation Time: 0.6292469501495361, Val loss: 1.5401906967163086, Test loss: 18.459243774414062
+Val acc: 56.2493, Test acc: 0.1001
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 175, Time(s): 7.4762, estimated train loss 1.1096, acc 65.2921
+Evaluation Time: 0.6158790588378906, Val loss: 1.552236557006836, Test loss: 18.41176986694336
+Val acc: 56.0258, Test acc: 0.1192
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 176, Time(s): 7.5237, estimated train loss 1.1105, acc 65.3029
+Evaluation Time: 0.6306347846984863, Val loss: 1.5519927740097046, Test loss: 18.652620315551758
+Val acc: 56.0104, Test acc: 0.0882
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 177, Time(s): 7.8227, estimated train loss 1.1088, acc 65.2733
+Evaluation Time: 0.6072914600372314, Val loss: 1.554405927658081, Test loss: 19.051340103149414
+Val acc: 56.1106, Test acc: 0.0954
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 178, Time(s): 7.9184, estimated train loss 1.1083, acc 65.3030
+Evaluation Time: 0.6008508205413818, Val loss: 1.5676865577697754, Test loss: 18.7786808013916
+Val acc: 55.5788, Test acc: 0.0978
+Best Epoch 130,Val 56.6855, Test 0.1001
+Epoch 179, Time(s): 7.4926, estimated train loss 1.1074, acc 65.3300
+Evaluation Time: 0.6119847297668457, Val loss: 1.548834204673767, Test loss: 19.102785110473633
+Val acc: 56.0536, Test acc: 0.0978
+Best Epoch 130,Val 56.6855, Test 0.1001
+average train times 7.584172358170399
+Best Epoch 130, Val 56.6855, Test 0.1001
+main_path.py:468: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  model.load_state_dict(torch.load(checkpt_file+f'_{stage}.pkl'))
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 74/74 [00:06<00:00, 10.79it/s]
+Stage 0 history model:
+	Train acc 70.6959 Val acc 56.6855 Test acc 0.1001
+Stage: 1, threshold 0.6, confident nodes: 50416 / 106818
+		 val confident nodes: 31468 / 64879,  val confident level: 0.7554658651351929
+		test confident nodes: 18948 / 41939, test confident_level: 0.001688832649961114
+Current num label hops = 4
+Involved label keys ['P', 'PP', 'PAP', 'PFP', 'PPP', 'PAPP', 'PFPP', 'PPAP', 'PPFP', 'PPPP', 'PAIAP', 'PAPAP', 'PAPFP', 'PAPPP', 'PFPAP', 'PFPFP', 'PFPPP', 'PPAPP', 'PPFPP', 'PPPAP', 'PPPFP', 'PPPPP']
+PP tensor(0.4276) tensor(0.3860) tensor(0.0010) tensor(3.7770) tensor(3.4195) tensor(13.5136) tensor(10.7890) tensor(41608.8672) tensor(-10.4543) tensor(72.0503)
+PAP tensor(0.4229) tensor(0.3902) tensor(0.0428) tensor(3.3156) tensor(3.3078) tensor(13.4210) tensor(8.3826) tensor(887.0467) tensor(-0.2373) tensor(75.2953)
+PFP tensor(0.2898) tensor(0.2587) tensor(4.7688e-05) tensor(3.1796) tensor(3.2466) tensor(6.6080) tensor(11.9958) tensor(607557.1875) tensor(2.0634) tensor(51.8822)
+PPP tensor(0.4034) tensor(0.3851) tensor(0.0045) tensor(2.7954) tensor(2.6094) tensor(12.8784) tensor(4.7493) tensor(8803.4023) tensor(-7.1277) tensor(78.2936)
+PAPP tensor(0.4242) tensor(0.4013) tensor(0.0011) tensor(2.4556) tensor(2.4907) tensor(12.8767) tensor(5.7071) tensor(36962.4805) tensor(1.4066) tensor(80.9297)
+PFPP tensor(0.2662) tensor(0.2362) tensor(4.7688e-05) tensor(3.2796) tensor(3.3047) tensor(6.6517) tensor(12.6923) tensor(558085.3750) tensor(0.7572) tensor(50.6948)
+PPAP tensor(0.4214) tensor(0.3993) tensor(0.0011) tensor(2.4560) tensor(2.4399) tensor(13.0522) tensor(5.5275) tensor(36720.4453) tensor(-0.6625) tensor(81.1829)
+PPFP tensor(0.2795) tensor(0.2650) tensor(2.3844e-05) tensor(3.2368) tensor(3.2556) tensor(6.5541) tensor(5.4506) tensor(1172001.1250) tensor(0.5757) tensor(50.6138)
+PPPP tensor(0.4078) tensor(0.3843) tensor(0.0009) tensor(2.3823) tensor(2.4006) tensor(12.1125) tensor(6.1121) tensor(43751.9336) tensor(0.7626) tensor(80.3322)
+PAIAP tensor(0.1497) tensor(0.1301) tensor(0.0432) tensor(4.4572) tensor(4.4563) tensor(10.6755) tensor(15.0719) tensor(246.9364) tensor(-0.0207) tensor(58.2484)
+PAPAP tensor(0.4131) tensor(0.3857) tensor(0.0429) tensor(3.0550) tensor(3.1023) tensor(13.0572) tensor(7.1094) tensor(863.0137) tensor(1.5232) tensor(76.6029)
+PAPFP tensor(0.2796) tensor(0.2570) tensor(0.) tensor(3.2329) tensor(3.2684) tensor(6.4776) tensor(8.8047) tensor(inf) tensor(1.0844) tensor(50.0909)
+PAPPP tensor(0.4072) tensor(0.3897) tensor(0.0018) tensor(2.3049) tensor(2.3613) tensor(11.8438) tensor(4.4993) tensor(22080.1797) tensor(2.3864) tensor(80.5389)
+PFPAP tensor(0.2740) tensor(0.2439) tensor(4.7688e-05) tensor(3.2646) tensor(3.3120) tensor(6.5688) tensor(12.3562) tensor(574432.7500) tensor(1.4296) tensor(50.3012)
+PFPFP tensor(0.2113) tensor(0.1573) tensor(0.) tensor(3.7574) tensor(3.8013) tensor(6.1024) tensor(34.3472) tensor(inf) tensor(1.1563) tensor(38.4275)
+PFPPP tensor(0.2582) tensor(0.2270) tensor(2.3844e-05) tensor(3.3163) tensor(3.3370) tensor(6.6563) tensor(13.7317) tensor(1082603.5000) tensor(0.6223) tensor(50.1787)
+PPAPP tensor(0.3920) tensor(0.3769) tensor(0.0015) tensor(2.4186) tensor(2.4446) tensor(11.8125) tensor(4.0129) tensor(25191.0254) tensor(1.0627) tensor(79.5249)
+PPFPP tensor(0.2575) tensor(0.2438) tensor(0.) tensor(3.3534) tensor(3.3205) tensor(6.6099) tensor(5.6053) tensor(inf) tensor(-0.9911) tensor(49.2672)
+PPPAP tensor(0.4098) tensor(0.3918) tensor(0.0018) tensor(2.2627) tensor(2.3405) tensor(11.9847) tensor(4.6059) tensor(23126.2910) tensor(3.3204) tensor(81.1198)
+PPPFP tensor(0.2750) tensor(0.2549) tensor(2.3844e-05) tensor(3.2561) tensor(3.2867) tensor(6.4837) tensor(7.8611) tensor(1153055.7500) tensor(0.9294) tensor(49.7798)
+PPPPP tensor(0.3745) tensor(0.3656) tensor(0.0044) tensor(2.5036) tensor(2.4942) tensor(11.3402) tensor(2.4401) tensor(8344.0146) tensor(-0.3784) tensor(77.9225)
+{'PP', 'PAIAP', 'PAPPP', 'PPFPP', 'PFPFP', 'PPAP', 'PFPAP', 'PPPFP', 'PPPP', 'PPPPP', 'PFPPP', 'PAPFP', 'PAPP', 'PAP', 'PPP', 'PFPP', 'PAPAP', 'PPAPP', 'PPFP', 'PFP', 'PPPAP'}
+tensor(0.6785)
+tensor(0.6361)
+tensor(0.0668)
+label_emb tensor(0.4333) tensor(0.4064) tensor(0.0009) tensor(2.3555) tensor(2.4871) tensor(7.1530) tensor(6.5988) tensor(47718.1484) tensor(5.2901) tensor(67.0691)
+{'label_emb'}
+tensor(0.4333)
+tensor(0.4064)
+tensor(0.0009)
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:626: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+2.572426892709041 1.0683395301086316
+Epoch 0, Time(s): 10.5903, estimated train loss 2.7873, acc 42.1614
+Evaluation Time: 0.782228946685791, Val loss: 2.051417112350464, Test loss: 9.229096412658691
+Val acc: 49.8281, Test acc: 0.1836
+Best Epoch 0,Val 49.8281, Test 0.1836
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:626: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+1.9672826770423115 0.5930026847383251
+Epoch 1, Time(s): 10.6514, estimated train loss 2.0559, acc 48.6527
+Evaluation Time: 0.8247110843658447, Val loss: 1.8330698013305664, Test loss: 11.97805404663086
+Val acc: 51.8827, Test acc: 0.1454
+Best Epoch 1,Val 51.8827, Test 0.1454
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:626: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+1.8471997630768928 0.4967411799707275
+Epoch 2, Time(s): 10.3604, estimated train loss 1.9063, acc 50.6987
+Evaluation Time: 0.8232874870300293, Val loss: 1.7275537252426147, Test loss: 12.395027160644531
+Val acc: 53.8156, Test acc: 0.1407
+Best Epoch 2,Val 53.8156, Test 0.1407
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:626: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+1.782846148463263 0.43644287620765576
+Epoch 3, Time(s): 10.2038, estimated train loss 1.8110, acc 52.1493
+Evaluation Time: 0.8263595104217529, Val loss: 1.7084153890609741, Test loss: 12.674955368041992
+Val acc: 53.7292, Test acc: 0.1025
+Best Epoch 2,Val 53.8156, Test 0.1407
+1.7369758910027102 0.4095424599405648
+Epoch 4, Time(s): 10.3296, estimated train loss 1.7634, acc 52.7958
+Evaluation Time: 0.8123862743377686, Val loss: 1.6811985969543457, Test loss: 12.516477584838867
+Val acc: 54.2363, Test acc: 0.1145
+Best Epoch 4,Val 54.2363, Test 0.1145
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:626: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+1.6848017806592195 0.37339154015416687
+Epoch 5, Time(s): 10.2554, estimated train loss 1.7012, acc 53.6864
+Evaluation Time: 0.8160080909729004, Val loss: 1.658344030380249, Test loss: 12.955748558044434
+Val acc: 54.4167, Test acc: 0.1073
+Best Epoch 5,Val 54.4167, Test 0.1073
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:626: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+1.6301106957421787 0.3281899319178816
+Epoch 6, Time(s): 10.2970, estimated train loss 1.6253, acc 54.9897
+Evaluation Time: 0.835211992263794, Val loss: 1.6344407796859741, Test loss: 13.010586738586426
+Val acc: 55.2336, Test acc: 0.1168
+Best Epoch 6,Val 55.2336, Test 0.1168
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:626: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+1.6179838819780212 0.3190613341504249
+Epoch 7, Time(s): 10.2766, estimated train loss 1.6154, acc 55.0832
+Evaluation Time: 0.8495967388153076, Val loss: 1.636183261871338, Test loss: 13.524222373962402
+Val acc: 55.0008, Test acc: 0.1288
+Best Epoch 6,Val 55.2336, Test 0.1168
+1.594185005063596 0.3126647856788359
+Epoch 8, Time(s): 10.3585, estimated train loss 1.5990, acc 55.3877
+Evaluation Time: 0.8303101062774658, Val loss: 1.6196789741516113, Test loss: 14.38475513458252
+Val acc: 56.0767, Test acc: 0.1073
+Best Epoch 8,Val 56.0767, Test 0.1073
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:626: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+1.5970889779104702 0.3132606975842213
+Epoch 9, Time(s): 15.0337, estimated train loss 1.5944, acc 55.3517
+Evaluation Time: 1.1178364753723145, Val loss: 1.6014549732208252, Test loss: 13.916943550109863
+Val acc: 55.8023, Test acc: 0.1025
+Best Epoch 8,Val 56.0767, Test 0.1073
+1.5604012185248777 0.28508753167546314
+Epoch 10, Time(s): 13.9432, estimated train loss 1.5530, acc 56.0491
+Evaluation Time: 1.0374579429626465, Val loss: 1.6105974912643433, Test loss: 14.393607139587402
+Val acc: 56.0890, Test acc: 0.1001
+Best Epoch 10,Val 56.0890, Test 0.1001
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:626: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+1.5605445720147395 0.28456029619859613
+Epoch 11, Time(s): 14.5249, estimated train loss 1.5532, acc 56.0585
+Evaluation Time: 0.91963791847229, Val loss: 1.5938457250595093, Test loss: 14.226686477661133
+Val acc: 55.9750, Test acc: 0.1121
+Best Epoch 10,Val 56.0890, Test 0.1001
+1.5534796058267788 0.2794119653062544
+Epoch 12, Time(s): 13.2092, estimated train loss 1.5407, acc 56.2157
+Evaluation Time: 1.2916858196258545, Val loss: 1.585526466369629, Test loss: 13.94687557220459
+Val acc: 56.1954, Test acc: 0.1192
+Best Epoch 12,Val 56.1954, Test 0.1192
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:626: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+1.5472835837930874 0.27090593481409375
+Epoch 13, Time(s): 13.2732, estimated train loss 1.5314, acc 56.5503
+Evaluation Time: 1.0421321392059326, Val loss: 1.5891566276550293, Test loss: 14.341354370117188
+Val acc: 56.0674, Test acc: 0.1121
+Best Epoch 12,Val 56.1954, Test 0.1192
+1.536475714566051 0.27785621756228845
+Epoch 14, Time(s): 23.5701, estimated train loss 1.5322, acc 56.4580
+Evaluation Time: 1.5238049030303955, Val loss: 1.6097856760025024, Test loss: 14.174062728881836
+Val acc: 56.3002, Test acc: 0.1383
+Best Epoch 14,Val 56.3002, Test 0.1383
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:626: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+1.540193504181461 0.2716899231292199
+Epoch 15, Time(s): 12.4744, estimated train loss 1.5280, acc 56.5533
+Evaluation Time: 0.9063067436218262, Val loss: 1.5854061841964722, Test loss: 14.662235260009766
+Val acc: 56.4266, Test acc: 0.1097
+Best Epoch 15,Val 56.4266, Test 0.1097
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:626: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+1.5307209111642146 0.26781694936579553
+Epoch 16, Time(s): 11.1945, estimated train loss 1.5189, acc 56.6247
+Evaluation Time: 1.2975294589996338, Val loss: 1.5994645357131958, Test loss: 14.53205394744873
+Val acc: 55.7838, Test acc: 0.1168
+Best Epoch 15,Val 56.4266, Test 0.1097
+1.5268016829006914 0.2603310677020446
+Epoch 17, Time(s): 15.0055, estimated train loss 1.5073, acc 56.8093
+Evaluation Time: 1.011976718902588, Val loss: 1.569589376449585, Test loss: 14.383049011230469
+Val acc: 56.4497, Test acc: 0.1001
+Best Epoch 17,Val 56.4497, Test 0.1001
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:626: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+1.5162338398504949 0.25124819144822547
+Epoch 18, Time(s): 13.9638, estimated train loss 1.4924, acc 57.0420
+Evaluation Time: 0.9958679676055908, Val loss: 1.5836074352264404, Test loss: 14.402435302734375
+Val acc: 56.7025, Test acc: 0.1145
+Best Epoch 18,Val 56.7025, Test 0.1145
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:626: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+1.4946347561435422 0.24759353157402814
+Epoch 19, Time(s): 11.5103, estimated train loss 1.4777, acc 57.3046
+Evaluation Time: 0.8344945907592773, Val loss: 1.5653047561645508, Test loss: 14.497435569763184
+Val acc: 56.7965, Test acc: 0.1168
+Best Epoch 19,Val 56.7965, Test 0.1168
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:626: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+1.488113054330798 0.24082855793876926
+Epoch 20, Time(s): 10.2555, estimated train loss 1.4668, acc 57.5139
+Evaluation Time: 0.8357808589935303, Val loss: 1.5755590200424194, Test loss: 14.846534729003906
+Val acc: 56.6624, Test acc: 0.1121
+Best Epoch 19,Val 56.7965, Test 0.1168
+1.4915104793465657 0.23761524735153586
+Epoch 21, Time(s): 10.3168, estimated train loss 1.4671, acc 57.5500
+Evaluation Time: 0.8153619766235352, Val loss: 1.5677971839904785, Test loss: 14.690853118896484
+Val acc: 56.6794, Test acc: 0.1335
+Best Epoch 19,Val 56.7965, Test 0.1168
+1.475809715796208 0.23768186115700266
+Epoch 22, Time(s): 10.2126, estimated train loss 1.4563, acc 57.6902
+Evaluation Time: 0.8202457427978516, Val loss: 1.6146326065063477, Test loss: 15.1415433883667
+Val acc: 56.0921, Test acc: 0.1264
+Best Epoch 19,Val 56.7965, Test 0.1168
+1.4784083487331003 0.23984882192335266
+Epoch 23, Time(s): 10.2827, estimated train loss 1.4591, acc 57.6580
+Evaluation Time: 0.8232071399688721, Val loss: 1.5590723752975464, Test loss: 15.365392684936523
+Val acc: 57.1171, Test acc: 0.1240
+Best Epoch 23,Val 57.1171, Test 0.1240
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:626: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+1.468425130498582 0.2286693728056507
+Epoch 24, Time(s): 10.4475, estimated train loss 1.4431, acc 57.9774
+Evaluation Time: 0.831899881362915, Val loss: 1.572058916091919, Test loss: 15.0013427734375
+Val acc: 56.7287, Test acc: 0.1264
+Best Epoch 23,Val 57.1171, Test 0.1240
+1.4559123861616936 0.22043849959753561
+Epoch 25, Time(s): 10.5322, estimated train loss 1.4285, acc 58.2343
+Evaluation Time: 0.8945202827453613, Val loss: 1.5494370460510254, Test loss: 15.22217082977295
+Val acc: 57.2820, Test acc: 0.1049
+Best Epoch 25,Val 57.2820, Test 0.1049
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:626: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+1.4646169396414273 0.22347975360310596
+Epoch 26, Time(s): 13.4722, estimated train loss 1.4354, acc 58.2136
+Evaluation Time: 1.098876953125, Val loss: 1.5626344680786133, Test loss: 14.85020923614502
+Val acc: 57.2635, Test acc: 0.1240
+Best Epoch 25,Val 57.2820, Test 0.1049
+1.4628803764564404 0.2239437591338503
+Epoch 27, Time(s): 13.5752, estimated train loss 1.4354, acc 58.1820
+Evaluation Time: 1.0530815124511719, Val loss: 1.557708740234375, Test loss: 15.221355438232422
+Val acc: 57.1695, Test acc: 0.1049
+Best Epoch 25,Val 57.2820, Test 0.1049
+1.4558288532754649 0.22038006804127624
+Epoch 28, Time(s): 14.9558, estimated train loss 1.4261, acc 58.3161
+Evaluation Time: 1.3657348155975342, Val loss: 1.559409499168396, Test loss: 15.106657981872559
+Val acc: 57.0123, Test acc: 0.1168
+Best Epoch 25,Val 57.2820, Test 0.1049
+1.4464943253475686 0.22317636034626892
+Epoch 29, Time(s): 12.8768, estimated train loss 1.4267, acc 58.3796
+Evaluation Time: 1.2270362377166748, Val loss: 1.570840835571289, Test loss: 15.486654281616211
+Val acc: 56.5499, Test acc: 0.1073
+Best Epoch 25,Val 57.2820, Test 0.1049
+1.4533865313599075 0.22791390509709067
+Epoch 30, Time(s): 14.9729, estimated train loss 1.4346, acc 58.0613
+Evaluation Time: 1.113680124282837, Val loss: 1.566993236541748, Test loss: 15.898029327392578
+Val acc: 56.9969, Test acc: 0.1073
+Best Epoch 25,Val 57.2820, Test 0.1049
+1.446225629336592 0.21544327316940695
+Epoch 31, Time(s): 17.6157, estimated train loss 1.4131, acc 58.4670
+Evaluation Time: 1.0164332389831543, Val loss: 1.5785576105117798, Test loss: 15.577098846435547
+Val acc: 56.6979, Test acc: 0.1264
+Best Epoch 25,Val 57.2820, Test 0.1049
+1.4253394292748494 0.2092774696108224
+Epoch 32, Time(s): 12.4610, estimated train loss 1.3974, acc 58.6755
+Evaluation Time: 0.8483388423919678, Val loss: 1.5768518447875977, Test loss: 15.613306045532227
+Val acc: 56.6223, Test acc: 0.1216
+Best Epoch 25,Val 57.2820, Test 0.1049
+1.4355491313381472 0.20961974431639133
+Epoch 33, Time(s): 10.6592, estimated train loss 1.4023, acc 58.6619
+Evaluation Time: 0.8333251476287842, Val loss: 1.5477590560913086, Test loss: 15.529810905456543
+Val acc: 57.3113, Test acc: 0.1192
+Best Epoch 33,Val 57.3113, Test 0.1192
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:626: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+1.421653025392173 0.21022734888221906
+Epoch 34, Time(s): 16.5017, estimated train loss 1.3973, acc 58.7470
+Evaluation Time: 1.022728443145752, Val loss: 1.5394810438156128, Test loss: 15.836009979248047
+Val acc: 57.3560, Test acc: 0.1097
+Best Epoch 34,Val 57.3560, Test 0.1097
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:626: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+1.3930899906849517 0.1935245465973149
+Epoch 35, Time(s): 14.2763, estimated train loss 1.3603, acc 59.4938
+Evaluation Time: 0.9867384433746338, Val loss: 1.5390477180480957, Test loss: 15.895034790039062
+Val acc: 57.3406, Test acc: 0.1168
+Best Epoch 34,Val 57.3560, Test 0.1097
+1.3745159774586775 0.18977530106254245
+Epoch 36, Time(s): 11.9753, estimated train loss 1.3444, acc 59.8150
+Evaluation Time: 0.8878142833709717, Val loss: 1.559238076210022, Test loss: 15.94070816040039
+Val acc: 57.3529, Test acc: 0.1240
+Best Epoch 34,Val 57.3560, Test 0.1097
+1.4069765788921411 0.19849286433579266
+Epoch 37, Time(s): 13.4650, estimated train loss 1.3718, acc 59.3020
+Evaluation Time: 1.0142991542816162, Val loss: 1.589665174484253, Test loss: 16.743764877319336
+Val acc: 56.9738, Test acc: 0.1145
+Best Epoch 34,Val 57.3560, Test 0.1097
+1.411536907804185 0.20441434240859488
+Epoch 38, Time(s): 13.1576, estimated train loss 1.3822, acc 59.0925
+Evaluation Time: 0.8444199562072754, Val loss: 1.5418614149093628, Test loss: 15.88626766204834
+Val acc: 57.3498, Test acc: 0.1192
+Best Epoch 34,Val 57.3560, Test 0.1097
+1.3695125372513481 0.18591374677160513
+Epoch 39, Time(s): 10.2903, estimated train loss 1.3381, acc 59.9584
+Evaluation Time: 0.8143553733825684, Val loss: 1.5620179176330566, Test loss: 15.848020553588867
+Val acc: 57.3606, Test acc: 0.1264
+Best Epoch 39,Val 57.3606, Test 0.1264
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:626: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+1.390777841858242 0.19557580157466556
+Epoch 40, Time(s): 10.4891, estimated train loss 1.3591, acc 59.3596
+Evaluation Time: 0.8416140079498291, Val loss: 1.5709308385849, Test loss: 16.05875015258789
+Val acc: 56.7950, Test acc: 0.1216
+Best Epoch 39,Val 57.3606, Test 0.1264
+1.379039322120556 0.18968631975028827
+Epoch 41, Time(s): 10.5702, estimated train loss 1.3484, acc 59.6973
+Evaluation Time: 0.8279023170471191, Val loss: 1.539124846458435, Test loss: 16.009151458740234
+Val acc: 57.8061, Test acc: 0.1216
+Best Epoch 41,Val 57.8061, Test 0.1216
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:626: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+1.3937836868175562 0.19078195138254028
+Epoch 42, Time(s): 10.3515, estimated train loss 1.3603, acc 59.5051
+Evaluation Time: 0.8111801147460938, Val loss: 1.5747939348220825, Test loss: 15.91796588897705
+Val acc: 56.9198, Test acc: 0.1168
+Best Epoch 41,Val 57.8061, Test 0.1216
+1.3853209355603093 0.195161338949549
+Epoch 43, Time(s): 10.2558, estimated train loss 1.3589, acc 59.4616
+Evaluation Time: 0.8577377796173096, Val loss: 1.5488249063491821, Test loss: 15.899248123168945
+Val acc: 57.2789, Test acc: 0.1240
+Best Epoch 41,Val 57.8061, Test 0.1216
+1.3862114781918733 0.1921568214893341
+Epoch 44, Time(s): 10.4055, estimated train loss 1.3563, acc 59.4675
+Evaluation Time: 0.8222706317901611, Val loss: 1.5522780418395996, Test loss: 15.870102882385254
+Val acc: 57.2990, Test acc: 0.1145
+Best Epoch 41,Val 57.8061, Test 0.1216
+1.3759770859842715 0.18580092381739963
+Epoch 45, Time(s): 10.1953, estimated train loss 1.3446, acc 59.7688
+Evaluation Time: 0.8099215030670166, Val loss: 1.5676826238632202, Test loss: 15.532557487487793
+Val acc: 56.9722, Test acc: 0.1073
+Best Epoch 41,Val 57.8061, Test 0.1216
+1.3937237711920254 0.1928605013999386
+Epoch 46, Time(s): 10.4310, estimated train loss 1.3572, acc 59.5490
+Evaluation Time: 0.8731486797332764, Val loss: 1.5650534629821777, Test loss: 15.835469245910645
+Val acc: 57.4146, Test acc: 0.1240
+Best Epoch 41,Val 57.8061, Test 0.1216
+1.3892905608467434 0.1863520895873291
+Epoch 47, Time(s): 10.5656, estimated train loss 1.3467, acc 59.7380
+Evaluation Time: 0.8251245021820068, Val loss: 1.5504125356674194, Test loss: 15.833090782165527
+Val acc: 57.3360, Test acc: 0.1192
+Best Epoch 41,Val 57.8061, Test 0.1216
+1.383948842684428 0.18726767750753873
+Epoch 48, Time(s): 10.4339, estimated train loss 1.3461, acc 59.8601
+Evaluation Time: 0.8275942802429199, Val loss: 1.5409798622131348, Test loss: 15.848286628723145
+Val acc: 57.7136, Test acc: 0.1264
+Best Epoch 41,Val 57.8061, Test 0.1216
+1.3756307847257974 0.1897437594075134
+Epoch 49, Time(s): 10.4295, estimated train loss 1.3448, acc 59.7790
+Evaluation Time: 0.8180177211761475, Val loss: 1.5367076396942139, Test loss: 16.45992660522461
+Val acc: 58.0619, Test acc: 0.1097
+Best Epoch 49,Val 58.0619, Test 0.1097
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:626: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+1.3745180593020674 0.18874779516372128
+Epoch 50, Time(s): 10.5135, estimated train loss 1.3408, acc 59.8350
+Evaluation Time: 0.8138971328735352, Val loss: 1.5520446300506592, Test loss: 16.425254821777344
+Val acc: 57.5302, Test acc: 0.1145
+Best Epoch 49,Val 58.0619, Test 0.1097
+1.3715132993200552 0.18379515927770865
+Epoch 51, Time(s): 10.3317, estimated train loss 1.3370, acc 59.9988
+Evaluation Time: 0.8681654930114746, Val loss: 1.5630571842193604, Test loss: 16.165586471557617
+Val acc: 57.3575, Test acc: 0.1264
+Best Epoch 49,Val 58.0619, Test 0.1097
+1.3723499463952107 0.1867414209721745
+Epoch 52, Time(s): 10.4859, estimated train loss 1.3378, acc 59.8830
+Evaluation Time: 0.814903974533081, Val loss: 1.5540672540664673, Test loss: 16.368974685668945
+Val acc: 57.6350, Test acc: 0.1240
+Best Epoch 49,Val 58.0619, Test 0.1097
+1.3618125794590383 0.1808280132818913
+Epoch 53, Time(s): 10.4602, estimated train loss 1.3284, acc 60.0755
+Evaluation Time: 0.8221769332885742, Val loss: 1.5483406782150269, Test loss: 16.269805908203125
+Val acc: 57.7213, Test acc: 0.1121
+Best Epoch 49,Val 58.0619, Test 0.1097
+1.3654248714447021 0.18054770494716754
+Epoch 54, Time(s): 10.6699, estimated train loss 1.3277, acc 60.0121
+Evaluation Time: 0.9185023307800293, Val loss: 1.5584486722946167, Test loss: 16.357851028442383
+Val acc: 57.4038, Test acc: 0.1168
+Best Epoch 49,Val 58.0619, Test 0.1097
+1.3535096541694973 0.17815333648004394
+Epoch 55, Time(s): 10.3247, estimated train loss 1.3166, acc 60.3055
+Evaluation Time: 0.8189845085144043, Val loss: 1.543442964553833, Test loss: 16.024490356445312
+Val acc: 57.5687, Test acc: 0.1240
+Best Epoch 49,Val 58.0619, Test 0.1097
+1.3448474476302879 0.17766241966814234
+Epoch 56, Time(s): 10.5608, estimated train loss 1.3129, acc 60.3991
+Evaluation Time: 0.8173134326934814, Val loss: 1.5531679391860962, Test loss: 16.077547073364258
+Val acc: 57.6473, Test acc: 0.1288
+Best Epoch 49,Val 58.0619, Test 0.1097
+1.3598946488421897 0.17737443615560947
+Epoch 57, Time(s): 10.3743, estimated train loss 1.3195, acc 60.2602
+Evaluation Time: 0.8461952209472656, Val loss: 1.5311163663864136, Test loss: 16.03473663330078
+Val acc: 57.8801, Test acc: 0.1192
+Best Epoch 49,Val 58.0619, Test 0.1097
+1.3460020327913589 0.17672121308851932
+Epoch 58, Time(s): 10.4553, estimated train loss 1.3126, acc 60.3841
+Evaluation Time: 0.8259017467498779, Val loss: 1.5577738285064697, Test loss: 16.121875762939453
+Val acc: 57.4315, Test acc: 0.1145
+Best Epoch 49,Val 58.0619, Test 0.1097
+1.3530966354453045 0.17852724224760913
+Epoch 59, Time(s): 10.4707, estimated train loss 1.3173, acc 60.3044
+Evaluation Time: 0.8304569721221924, Val loss: 1.555946946144104, Test loss: 16.05677604675293
+Val acc: 57.3468, Test acc: 0.1121
+Best Epoch 49,Val 58.0619, Test 0.1097
+1.354832763257234 0.17410889699839163
+Epoch 60, Time(s): 10.4675, estimated train loss 1.3120, acc 60.4639
+Evaluation Time: 0.855567216873169, Val loss: 1.5612142086029053, Test loss: 16.802593231201172
+Val acc: 57.7198, Test acc: 0.1240
+Best Epoch 49,Val 58.0619, Test 0.1097
+1.3474271193794582 0.17200076385684634
+Epoch 61, Time(s): 10.4910, estimated train loss 1.3054, acc 60.5331
+Evaluation Time: 0.8287572860717773, Val loss: 1.5610870122909546, Test loss: 16.42164421081543
+Val acc: 57.3468, Test acc: 0.1192
+Best Epoch 49,Val 58.0619, Test 0.1097
+1.346393737240114 0.1722939031711523
+Epoch 62, Time(s): 10.5580, estimated train loss 1.3065, acc 60.5555
+Evaluation Time: 0.8193154335021973, Val loss: 1.5504003763198853, Test loss: 16.50498390197754
+Val acc: 57.6365, Test acc: 0.1216
+Best Epoch 49,Val 58.0619, Test 0.1097
+1.3483061341271885 0.1721058077570321
+Epoch 63, Time(s): 10.5180, estimated train loss 1.3091, acc 60.4566
+Evaluation Time: 0.844606876373291, Val loss: 1.5390535593032837, Test loss: 16.262042999267578
+Val acc: 57.9849, Test acc: 0.1168
+Best Epoch 49,Val 58.0619, Test 0.1097
+1.3475879309833914 0.1786506227824999
+Epoch 64, Time(s): 10.5635, estimated train loss 1.3181, acc 60.3953
+Evaluation Time: 0.8172526359558105, Val loss: 1.5582257509231567, Test loss: 16.193706512451172
+Val acc: 57.7043, Test acc: 0.1311
+Best Epoch 49,Val 58.0619, Test 0.1097
+1.3479403464690498 0.17842514834542206
+Epoch 65, Time(s): 10.8598, estimated train loss 1.3156, acc 60.2617
+Evaluation Time: 0.8329677581787109, Val loss: 1.5628069639205933, Test loss: 16.173795700073242
+Val acc: 57.6350, Test acc: 0.1192
+Best Epoch 49,Val 58.0619, Test 0.1097
+1.3364579781242039 0.17061748085678488
+Epoch 66, Time(s): 10.4674, estimated train loss 1.2996, acc 60.6152
+Evaluation Time: 0.8234283924102783, Val loss: 1.5533339977264404, Test loss: 16.257648468017578
+Val acc: 57.6689, Test acc: 0.1145
+Best Epoch 49,Val 58.0619, Test 0.1097
+1.332437554995219 0.16998911767766095
+Epoch 67, Time(s): 10.3847, estimated train loss 1.2948, acc 60.8182
+Evaluation Time: 0.8135631084442139, Val loss: 1.5655477046966553, Test loss: 16.950664520263672
+Val acc: 57.5918, Test acc: 0.1121
+Best Epoch 49,Val 58.0619, Test 0.1097
+1.3428107828333757 0.17092148873253146
+Epoch 68, Time(s): 10.4068, estimated train loss 1.3041, acc 60.6346
+Evaluation Time: 0.8123083114624023, Val loss: 1.5541850328445435, Test loss: 16.493759155273438
+Val acc: 57.7552, Test acc: 0.1192
+Best Epoch 49,Val 58.0619, Test 0.1097
+1.342785736788874 0.1765521959118221
+Epoch 69, Time(s): 10.3862, estimated train loss 1.3067, acc 60.6049
+Evaluation Time: 0.8203599452972412, Val loss: 1.5512889623641968, Test loss: 16.6441593170166
+Val acc: 58.0018, Test acc: 0.1121
+Best Epoch 49,Val 58.0619, Test 0.1097
+1.336332423099573 0.16910993081072104
+Epoch 70, Time(s): 10.4639, estimated train loss 1.2971, acc 60.6999
+Evaluation Time: 0.8258404731750488, Val loss: 1.5423237085342407, Test loss: 16.51627540588379
+Val acc: 57.8230, Test acc: 0.1264
+Best Epoch 49,Val 58.0619, Test 0.1097
+1.3260380124700242 0.16947274773881055
+Epoch 71, Time(s): 10.4539, estimated train loss 1.2924, acc 60.6678
+Evaluation Time: 0.8095004558563232, Val loss: 1.559783697128296, Test loss: 16.96095085144043
+Val acc: 57.9633, Test acc: 0.1288
+Best Epoch 49,Val 58.0619, Test 0.1097
+1.3283426018728726 0.16675276903138644
+Epoch 72, Time(s): 10.4209, estimated train loss 1.2894, acc 60.8672
+Evaluation Time: 0.8179366588592529, Val loss: 1.5532336235046387, Test loss: 16.743480682373047
+Val acc: 57.7198, Test acc: 0.1145
+Best Epoch 49,Val 58.0619, Test 0.1097
+1.3261465870815774 0.16772574337496274
+Epoch 73, Time(s): 10.3405, estimated train loss 1.2891, acc 60.8041
+Evaluation Time: 0.8071637153625488, Val loss: 1.561120629310608, Test loss: 16.549213409423828
+Val acc: 57.4824, Test acc: 0.1145
+Best Epoch 49,Val 58.0619, Test 0.1097
+1.3208147477412568 0.1659203785053198
+Epoch 74, Time(s): 10.4728, estimated train loss 1.2863, acc 60.9323
+Evaluation Time: 0.8429930210113525, Val loss: 1.5409111976623535, Test loss: 16.57465362548828
+Val acc: 58.0357, Test acc: 0.1192
+Best Epoch 49,Val 58.0619, Test 0.1097
+1.3334558321082073 0.16556140866832456
+Epoch 75, Time(s): 10.6447, estimated train loss 1.2900, acc 60.8911
+Evaluation Time: 0.822392463684082, Val loss: 1.5399082899093628, Test loss: 16.53789520263672
+Val acc: 57.9355, Test acc: 0.1216
+Best Epoch 49,Val 58.0619, Test 0.1097
+1.3216028818185779 0.16218937436739603
+Epoch 76, Time(s): 10.4529, estimated train loss 1.2780, acc 61.1207
+Evaluation Time: 0.8472294807434082, Val loss: 1.5884984731674194, Test loss: 17.19550323486328
+Val acc: 57.5625, Test acc: 0.1145
+Best Epoch 49,Val 58.0619, Test 0.1097
+1.3107450129329294 0.16154888855374377
+Epoch 77, Time(s): 10.3625, estimated train loss 1.2733, acc 61.1774
+Evaluation Time: 0.8171348571777344, Val loss: 1.556628704071045, Test loss: 17.2421932220459
+Val acc: 58.0188, Test acc: 0.1145
+Best Epoch 49,Val 58.0619, Test 0.1097
+1.3162071169286533 0.1647037993306699
+Epoch 78, Time(s): 10.3281, estimated train loss 1.2798, acc 61.1196
+Evaluation Time: 0.8154141902923584, Val loss: 1.5560517311096191, Test loss: 17.22992706298828
+Val acc: 57.6889, Test acc: 0.1097
+Best Epoch 49,Val 58.0619, Test 0.1097
+1.3150786005932351 0.16383891671464063
+Epoch 79, Time(s): 10.4112, estimated train loss 1.2743, acc 61.1076
+Evaluation Time: 0.8167436122894287, Val loss: 1.5679603815078735, Test loss: 17.045202255249023
+Val acc: 57.5348, Test acc: 0.1192
+Best Epoch 49,Val 58.0619, Test 0.1097
+1.3003758071125417 0.15720096230506897
+Epoch 80, Time(s): 10.4786, estimated train loss 1.2611, acc 61.3699
+Evaluation Time: 0.8191559314727783, Val loss: 1.561218500137329, Test loss: 17.024490356445312
+Val acc: 58.0049, Test acc: 0.1240
+Best Epoch 49,Val 58.0619, Test 0.1097
+1.3001734925353008 0.16077914186145947
+Epoch 81, Time(s): 10.4498, estimated train loss 1.2652, acc 61.2379
+Evaluation Time: 0.8164651393890381, Val loss: 1.562508225440979, Test loss: 17.133739471435547
+Val acc: 57.9648, Test acc: 0.1145
+Best Epoch 49,Val 58.0619, Test 0.1097
+1.3008285432622053 0.15468349491340527
+Epoch 82, Time(s): 10.4389, estimated train loss 1.2589, acc 61.3699
+Evaluation Time: 0.8283224105834961, Val loss: 1.578141450881958, Test loss: 17.135272979736328
+Val acc: 57.7460, Test acc: 0.1168
+Best Epoch 49,Val 58.0619, Test 0.1097
+1.2940364972404812 0.1528560333493827
+Epoch 83, Time(s): 10.4119, estimated train loss 1.2516, acc 61.5945
+Evaluation Time: 0.8286371231079102, Val loss: 1.5665881633758545, Test loss: 17.116003036499023
+Val acc: 57.7444, Test acc: 0.1073
+Best Epoch 49,Val 58.0619, Test 0.1097
+1.2902720544649207 0.15256112101285355
+Epoch 84, Time(s): 10.6666, estimated train loss 1.2499, acc 61.6135
+Evaluation Time: 0.8285677433013916, Val loss: 1.5745545625686646, Test loss: 17.076332092285156
+Val acc: 57.5672, Test acc: 0.1216
+Best Epoch 49,Val 58.0619, Test 0.1097
+1.293333195257878 0.1537945803956709
+Epoch 85, Time(s): 10.3894, estimated train loss 1.2510, acc 61.6099
+Evaluation Time: 0.8261637687683105, Val loss: 1.5537588596343994, Test loss: 17.531103134155273
+Val acc: 58.2191, Test acc: 0.1192
+Best Epoch 85,Val 58.2191, Test 0.1192
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:626: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+1.2923870708631433 0.15575490503207498
+Epoch 86, Time(s): 10.4944, estimated train loss 1.2531, acc 61.4997
+Evaluation Time: 0.8735015392303467, Val loss: 1.5781580209732056, Test loss: 17.15619659423828
+Val acc: 57.5379, Test acc: 0.1192
+Best Epoch 85,Val 58.2191, Test 0.1192
+1.3021591124327287 0.15367377927337866
+Epoch 87, Time(s): 10.4936, estimated train loss 1.2551, acc 61.6648
+Evaluation Time: 0.829413890838623, Val loss: 1.5399919748306274, Test loss: 17.22966766357422
+Val acc: 58.2222, Test acc: 0.1288
+Best Epoch 87,Val 58.2222, Test 0.1288
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:626: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+1.3011285671289416 0.1570886494456858
+Epoch 88, Time(s): 10.3698, estimated train loss 1.2590, acc 61.4984
+Evaluation Time: 0.8106591701507568, Val loss: 1.560703992843628, Test loss: 17.407421112060547
+Val acc: 57.7907, Test acc: 0.1145
+Best Epoch 87,Val 58.2222, Test 0.1288
+1.3011858618777732 0.15723088815592337
+Epoch 89, Time(s): 10.4337, estimated train loss 1.2601, acc 61.4712
+Evaluation Time: 0.8117940425872803, Val loss: 1.5565838813781738, Test loss: 17.40121841430664
+Val acc: 57.9818, Test acc: 0.1073
+Best Epoch 87,Val 58.2222, Test 0.1288
+1.2964722367300503 0.1571146830700446
+Epoch 90, Time(s): 10.4401, estimated train loss 1.2543, acc 61.4104
+Evaluation Time: 0.8187572956085205, Val loss: 1.5772883892059326, Test loss: 17.04178237915039
+Val acc: 57.7552, Test acc: 0.1335
+Best Epoch 87,Val 58.2222, Test 0.1288
+1.2991236517394797 0.1518879204556562
+Epoch 91, Time(s): 10.4524, estimated train loss 1.2504, acc 61.6917
+Evaluation Time: 0.8114237785339355, Val loss: 1.5968186855316162, Test loss: 17.172794342041016
+Val acc: 57.0739, Test acc: 0.1168
+Best Epoch 87,Val 58.2222, Test 0.1288
+1.2917306785998137 0.15496790927389395
+Epoch 92, Time(s): 10.3068, estimated train loss 1.2482, acc 61.6590
+Evaluation Time: 0.8271615505218506, Val loss: 1.5671463012695312, Test loss: 17.191064834594727
+Val acc: 57.8138, Test acc: 0.1240
+Best Epoch 87,Val 58.2222, Test 0.1288
+1.277425359988558 0.14922449986139932
+Epoch 93, Time(s): 10.6436, estimated train loss 1.2376, acc 61.8215
+Evaluation Time: 0.8130884170532227, Val loss: 1.5540152788162231, Test loss: 16.91152000427246
+Val acc: 57.6581, Test acc: 0.1121
+Best Epoch 87,Val 58.2222, Test 0.1288
+1.2907781428185061 0.15176135517548825
+Epoch 94, Time(s): 10.4261, estimated train loss 1.2478, acc 61.7949
+Evaluation Time: 0.8228044509887695, Val loss: 1.5602997541427612, Test loss: 16.91486930847168
+Val acc: 57.8014, Test acc: 0.1121
+Best Epoch 87,Val 58.2222, Test 0.1288
+1.288792900417162 0.15258090154848236
+Epoch 95, Time(s): 10.3974, estimated train loss 1.2505, acc 61.5673
+Evaluation Time: 0.8215608596801758, Val loss: 1.582081913948059, Test loss: 17.253734588623047
+Val acc: 57.5980, Test acc: 0.1145
+Best Epoch 87,Val 58.2222, Test 0.1288
+1.2863573596097422 0.1575792604598446
+Epoch 96, Time(s): 10.4223, estimated train loss 1.2497, acc 61.6790
+Evaluation Time: 0.816321849822998, Val loss: 1.5487771034240723, Test loss: 16.943241119384766
+Val acc: 57.8246, Test acc: 0.1097
+Best Epoch 87,Val 58.2222, Test 0.1288
+1.2876812858857971 0.15394664868928384
+Epoch 97, Time(s): 10.3871, estimated train loss 1.2480, acc 61.7370
+Evaluation Time: 0.8135225772857666, Val loss: 1.5601205825805664, Test loss: 17.082508087158203
+Val acc: 57.6504, Test acc: 0.1121
+Best Epoch 87,Val 58.2222, Test 0.1288
+1.2504968366761138 0.14345289464446082
+Epoch 98, Time(s): 10.3777, estimated train loss 1.2134, acc 62.3814
+Evaluation Time: 0.8187053203582764, Val loss: 1.5666135549545288, Test loss: 17.494792938232422
+Val acc: 57.8862, Test acc: 0.1145
+Best Epoch 87,Val 58.2222, Test 0.1288
+1.2700212770614072 0.14969269996104034
+Epoch 99, Time(s): 10.4349, estimated train loss 1.2348, acc 61.8888
+Evaluation Time: 0.8184196949005127, Val loss: 1.5904392004013062, Test loss: 17.487211227416992
+Val acc: 57.4238, Test acc: 0.1097
+Best Epoch 87,Val 58.2222, Test 0.1288
+1.2869739532470703 0.15195109878761182
+Epoch 100, Time(s): 10.3707, estimated train loss 1.2444, acc 61.7900
+Evaluation Time: 0.8242025375366211, Val loss: 1.5722018480300903, Test loss: 17.2845401763916
+Val acc: 57.9032, Test acc: 0.1216
+Best Epoch 87,Val 58.2222, Test 0.1288
+1.2785402795542842 0.15004567855942078
+Epoch 101, Time(s): 10.3613, estimated train loss 1.2400, acc 61.9657
+Evaluation Time: 0.8157258033752441, Val loss: 1.5743485689163208, Test loss: 17.194416046142578
+Val acc: 57.7829, Test acc: 0.1121
+Best Epoch 87,Val 58.2222, Test 0.1288
+1.2804716739101687 0.15191457442183426
+Epoch 102, Time(s): 10.3766, estimated train loss 1.2349, acc 61.9306
+Evaluation Time: 0.8191254138946533, Val loss: 1.5579670667648315, Test loss: 17.42842674255371
+Val acc: 57.9879, Test acc: 0.1145
+Best Epoch 87,Val 58.2222, Test 0.1288
+1.2792790057002634 0.14532769363427508
+Epoch 103, Time(s): 10.3024, estimated train loss 1.2283, acc 62.1509
+Evaluation Time: 0.8045346736907959, Val loss: 1.5659029483795166, Test loss: 17.1679744720459
+Val acc: 57.7645, Test acc: 0.1145
+Best Epoch 87,Val 58.2222, Test 0.1288
+1.2640271204105322 0.14442120460064514
+Epoch 104, Time(s): 10.3888, estimated train loss 1.2215, acc 62.2583
+Evaluation Time: 0.8362360000610352, Val loss: 1.5681416988372803, Test loss: 17.443622589111328
+Val acc: 58.0496, Test acc: 0.1121
+Best Epoch 87,Val 58.2222, Test 0.1288
+1.2696867783864338 0.14508273841246314
+Epoch 105, Time(s): 10.2909, estimated train loss 1.2249, acc 62.1237
+Evaluation Time: 0.8068752288818359, Val loss: 1.5815843343734741, Test loss: 17.440549850463867
+Val acc: 57.8816, Test acc: 0.1216
+Best Epoch 87,Val 58.2222, Test 0.1288
+1.2609483400980632 0.14705444537643073
+Epoch 106, Time(s): 10.3276, estimated train loss 1.2267, acc 62.2300
+Evaluation Time: 0.8247904777526855, Val loss: 1.568555474281311, Test loss: 17.209630966186523
+Val acc: 57.5101, Test acc: 0.1073
+Best Epoch 87,Val 58.2222, Test 0.1288
+1.2894497142321821 0.15597255139247232
+Epoch 107, Time(s): 10.4697, estimated train loss 1.2448, acc 61.8356
+Evaluation Time: 0.8096764087677002, Val loss: 1.5683599710464478, Test loss: 17.797578811645508
+Val acc: 57.8323, Test acc: 0.1168
+Best Epoch 87,Val 58.2222, Test 0.1288
+1.2745266496271328 0.14931719609792682
+Epoch 108, Time(s): 10.5436, estimated train loss 1.2316, acc 61.9438
+Evaluation Time: 0.8164031505584717, Val loss: 1.565423607826233, Test loss: 17.59114646911621
+Val acc: 57.8508, Test acc: 0.1216
+Best Epoch 87,Val 58.2222, Test 0.1288
+1.2591169122336567 0.14703425387109537
+Epoch 109, Time(s): 10.3460, estimated train loss 1.2227, acc 62.2227
+Evaluation Time: 0.8179028034210205, Val loss: 1.5738255977630615, Test loss: 17.412975311279297
+Val acc: 57.6519, Test acc: 0.1216
+Best Epoch 87,Val 58.2222, Test 0.1288
+1.275153120358785 0.1500568288391915
+Epoch 110, Time(s): 10.2550, estimated train loss 1.2330, acc 62.0030
+Evaluation Time: 0.810032844543457, Val loss: 1.562035083770752, Test loss: 17.537492752075195
+Val acc: 58.0111, Test acc: 0.1192
+Best Epoch 87,Val 58.2222, Test 0.1288
+1.263337722723035 0.14708172670309094
+Epoch 111, Time(s): 10.2769, estimated train loss 1.2242, acc 62.1998
+Evaluation Time: 0.8275744915008545, Val loss: 1.577838659286499, Test loss: 17.581623077392578
+Val acc: 57.7845, Test acc: 0.1145
+Best Epoch 87,Val 58.2222, Test 0.1288
+1.2724596279254858 0.14864098529020944
+Epoch 112, Time(s): 10.3239, estimated train loss 1.2292, acc 62.0747
+Evaluation Time: 0.8261880874633789, Val loss: 1.5916271209716797, Test loss: 18.106386184692383
+Val acc: 57.7336, Test acc: 0.1168
+Best Epoch 87,Val 58.2222, Test 0.1288
+1.2593402741611868 0.14411896564390347
+Epoch 113, Time(s): 10.5145, estimated train loss 1.2164, acc 62.3685
+Evaluation Time: 0.8166921138763428, Val loss: 1.5750619173049927, Test loss: 17.47827911376953
+Val acc: 57.9432, Test acc: 0.1240
+Best Epoch 87,Val 58.2222, Test 0.1288
+1.2736281260200168 0.1435864732965179
+Epoch 114, Time(s): 10.2979, estimated train loss 1.2228, acc 62.3445
+Evaluation Time: 0.806760311126709, Val loss: 1.5755703449249268, Test loss: 17.583486557006836
+Val acc: 57.9741, Test acc: 0.1264
+Best Epoch 87,Val 58.2222, Test 0.1288
+1.2635171154271 0.14383850732575293
+Epoch 115, Time(s): 10.3811, estimated train loss 1.2171, acc 62.3293
+Evaluation Time: 0.8091714382171631, Val loss: 1.604648470878601, Test loss: 17.616138458251953
+Val acc: 57.2681, Test acc: 0.1216
+Best Epoch 87,Val 58.2222, Test 0.1288
+1.2537831033485523 0.1441759041685989
+Epoch 116, Time(s): 10.4392, estimated train loss 1.2134, acc 62.4119
+Evaluation Time: 0.8303747177124023, Val loss: 1.603349208831787, Test loss: 17.74390411376953
+Val acc: 57.6196, Test acc: 0.1240
+Best Epoch 87,Val 58.2222, Test 0.1288
+1.2588657883630283 0.14446982795345611
+Epoch 117, Time(s): 10.3719, estimated train loss 1.2153, acc 62.4806
+Evaluation Time: 0.8080236911773682, Val loss: 1.577177882194519, Test loss: 18.137781143188477
+Val acc: 57.8122, Test acc: 0.1216
+Best Epoch 87,Val 58.2222, Test 0.1288
+1.2596496706423552 0.14685139491938162
+Epoch 118, Time(s): 10.2930, estimated train loss 1.2188, acc 62.4257
+Evaluation Time: 0.8324377536773682, Val loss: 1.5671800374984741, Test loss: 17.934268951416016
+Val acc: 57.9063, Test acc: 0.1240
+Best Epoch 87,Val 58.2222, Test 0.1288
+1.264967400094737 0.15255131864029428
+Epoch 119, Time(s): 10.3747, estimated train loss 1.2322, acc 62.0808
+Evaluation Time: 0.8072168827056885, Val loss: 1.559267282485962, Test loss: 17.05211639404297
+Val acc: 57.7768, Test acc: 0.1216
+Best Epoch 87,Val 58.2222, Test 0.1288
+1.2657099962234497 0.15226326364537943
+Epoch 120, Time(s): 10.4039, estimated train loss 1.2286, acc 62.1075
+Evaluation Time: 0.8219301700592041, Val loss: 1.6019623279571533, Test loss: 18.03792953491211
+Val acc: 57.6196, Test acc: 0.1168
+Best Epoch 87,Val 58.2222, Test 0.1288
+1.2553414935651033 0.1488685733166294
+Epoch 121, Time(s): 10.4375, estimated train loss 1.2232, acc 62.2726
+Evaluation Time: 0.8267509937286377, Val loss: 1.568832516670227, Test loss: 17.644287109375
+Val acc: 57.8708, Test acc: 0.1145
+Best Epoch 87,Val 58.2222, Test 0.1288
+1.2296848763590273 0.139139285662036
+Epoch 122, Time(s): 10.3995, estimated train loss 1.1907, acc 63.0610
+Evaluation Time: 0.8117465972900391, Val loss: 1.5991908311843872, Test loss: 17.88058090209961
+Val acc: 57.4238, Test acc: 0.1168
+Best Epoch 87,Val 58.2222, Test 0.1288
+1.2597660862881204 0.14281143150899722
+Epoch 123, Time(s): 10.3578, estimated train loss 1.2134, acc 62.4416
+Evaluation Time: 0.823265552520752, Val loss: 1.582807183265686, Test loss: 17.84405517578125
+Val acc: 57.9864, Test acc: 0.1073
+Best Epoch 87,Val 58.2222, Test 0.1288
+1.2536235373953115 0.14436637577803238
+Epoch 124, Time(s): 10.3453, estimated train loss 1.2131, acc 62.6096
+Evaluation Time: 0.8121206760406494, Val loss: 1.5809106826782227, Test loss: 17.501150131225586
+Val acc: 57.6997, Test acc: 0.1192
+Best Epoch 87,Val 58.2222, Test 0.1288
+1.2591713822406272 0.14653145921403082
+Epoch 125, Time(s): 10.4025, estimated train loss 1.2174, acc 62.2754
+Evaluation Time: 0.8117425441741943, Val loss: 1.603148341178894, Test loss: 17.959156036376953
+Val acc: 57.6673, Test acc: 0.1073
+Best Epoch 87,Val 58.2222, Test 0.1288
+1.2443676513174307 0.13807764606199402
+Epoch 126, Time(s): 10.3993, estimated train loss 1.2006, acc 62.7257
+Evaluation Time: 0.8135228157043457, Val loss: 1.5822240114212036, Test loss: 18.253454208374023
+Val acc: 58.3594, Test acc: 0.1216
+Best Epoch 126,Val 58.3594, Test 0.1216
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:626: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+1.2421042539071345 0.14078969238460928
+Epoch 127, Time(s): 10.3728, estimated train loss 1.2022, acc 62.5072
+Evaluation Time: 0.812549352645874, Val loss: 1.587727427482605, Test loss: 18.104148864746094
+Val acc: 57.8985, Test acc: 0.1168
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.240248517713685 0.13694683732329935
+Epoch 128, Time(s): 10.3732, estimated train loss 1.1938, acc 62.7670
+Evaluation Time: 0.8150498867034912, Val loss: 1.5783569812774658, Test loss: 17.67173957824707
+Val acc: 57.5440, Test acc: 0.1145
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.2361679975537285 0.13636193791593332
+Epoch 129, Time(s): 10.3467, estimated train loss 1.1885, acc 62.9600
+Evaluation Time: 0.8106496334075928, Val loss: 1.589339017868042, Test loss: 17.993072509765625
+Val acc: 57.9679, Test acc: 0.1192
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.23500404841658 0.13526047517855963
+Epoch 130, Time(s): 10.3872, estimated train loss 1.1881, acc 62.8692
+Evaluation Time: 0.807020902633667, Val loss: 1.585216999053955, Test loss: 18.453792572021484
+Val acc: 58.1205, Test acc: 0.1121
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.243889634160028 0.1369417550555174
+Epoch 131, Time(s): 10.2338, estimated train loss 1.1957, acc 62.9759
+Evaluation Time: 0.8040733337402344, Val loss: 1.6125681400299072, Test loss: 18.442691802978516
+Val acc: 57.5471, Test acc: 0.1145
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.2405429612035337 0.13941112905740738
+Epoch 132, Time(s): 10.3151, estimated train loss 1.1980, acc 62.6576
+Evaluation Time: 0.8025946617126465, Val loss: 1.5866053104400635, Test loss: 18.16618537902832
+Val acc: 57.8924, Test acc: 0.1216
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.230018341022989 0.1360536795379459
+Epoch 133, Time(s): 10.2775, estimated train loss 1.1882, acc 62.9392
+Evaluation Time: 0.8035135269165039, Val loss: 1.5903815031051636, Test loss: 18.624431610107422
+Val acc: 57.9402, Test acc: 0.1025
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.2320018419321033 0.13578436329312946
+Epoch 134, Time(s): 10.3453, estimated train loss 1.1890, acc 62.8734
+Evaluation Time: 0.8747358322143555, Val loss: 1.574324369430542, Test loss: 17.7763729095459
+Val acc: 57.8061, Test acc: 0.1335
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.2365578292072683 0.13712056791004928
+Epoch 135, Time(s): 10.4574, estimated train loss 1.1911, acc 62.8722
+Evaluation Time: 0.8107144832611084, Val loss: 1.59872567653656, Test loss: 18.134654998779297
+Val acc: 57.7737, Test acc: 0.1168
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.2258022142493206 0.13850587055734967
+Epoch 136, Time(s): 10.4292, estimated train loss 1.1870, acc 62.9386
+Evaluation Time: 0.8143622875213623, Val loss: 1.5906922817230225, Test loss: 17.93750762939453
+Val acc: 57.7475, Test acc: 0.1216
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.2314836339674133 0.1362059148757354
+Epoch 137, Time(s): 10.3669, estimated train loss 1.1881, acc 62.8887
+Evaluation Time: 0.8134350776672363, Val loss: 1.6135597229003906, Test loss: 18.61630630493164
+Val acc: 57.7259, Test acc: 0.1192
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.2333293064780857 0.13571242782948673
+Epoch 138, Time(s): 10.4648, estimated train loss 1.1843, acc 63.1106
+Evaluation Time: 0.8263030052185059, Val loss: 1.584800124168396, Test loss: 18.136749267578125
+Val acc: 57.8616, Test acc: 0.1168
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.2194210074949956 0.13461052928713785
+Epoch 139, Time(s): 10.4252, estimated train loss 1.1777, acc 63.0358
+Evaluation Time: 0.8309388160705566, Val loss: 1.6030757427215576, Test loss: 18.775907516479492
+Val acc: 57.7999, Test acc: 0.1145
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.2183387573214546 0.1328391182249871
+Epoch 140, Time(s): 10.4123, estimated train loss 1.1749, acc 63.1946
+Evaluation Time: 0.823479413986206, Val loss: 1.5892568826675415, Test loss: 18.383888244628906
+Val acc: 57.9001, Test acc: 0.1192
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.2256247271662173 0.13074192836664725
+Epoch 141, Time(s): 10.3821, estimated train loss 1.1769, acc 63.2134
+Evaluation Time: 0.8245809078216553, Val loss: 1.592702031135559, Test loss: 18.945457458496094
+Val acc: 57.9355, Test acc: 0.1192
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.2190803894098254 0.13334714351356894
+Epoch 142, Time(s): 10.4749, estimated train loss 1.1762, acc 63.2772
+Evaluation Time: 0.8247361183166504, Val loss: 1.5987586975097656, Test loss: 18.547504425048828
+Val acc: 57.7028, Test acc: 0.1168
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.2292498972104944 0.13435505319764648
+Epoch 143, Time(s): 10.3669, estimated train loss 1.1826, acc 63.1544
+Evaluation Time: 0.8164918422698975, Val loss: 1.5827912092208862, Test loss: 18.46390151977539
+Val acc: 57.8785, Test acc: 0.1168
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.2173434219498565 0.13333810293588086
+Epoch 144, Time(s): 10.3672, estimated train loss 1.1730, acc 63.2833
+Evaluation Time: 0.8209075927734375, Val loss: 1.6019266843795776, Test loss: 18.6450252532959
+Val acc: 57.8862, Test acc: 0.1168
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.2183158846868984 0.13128044164699057
+Epoch 145, Time(s): 10.4542, estimated train loss 1.1718, acc 63.2734
+Evaluation Time: 0.8244099617004395, Val loss: 1.602536916732788, Test loss: 18.41962242126465
+Val acc: 57.5934, Test acc: 0.1168
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.2151546944742617 0.13031815661900287
+Epoch 146, Time(s): 10.5031, estimated train loss 1.1679, acc 63.3886
+Evaluation Time: 0.8243415355682373, Val loss: 1.6186583042144775, Test loss: 18.794437408447266
+Val acc: 57.8631, Test acc: 0.1145
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.219471356143122 0.1328325217616731
+Epoch 147, Time(s): 10.4644, estimated train loss 1.1766, acc 63.2942
+Evaluation Time: 0.8168845176696777, Val loss: 1.593712329864502, Test loss: 18.428794860839844
+Val acc: 57.9494, Test acc: 0.1168
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.2319816644640937 0.13699892292851987
+Epoch 148, Time(s): 10.3374, estimated train loss 1.1856, acc 63.0701
+Evaluation Time: 0.8066079616546631, Val loss: 1.5767252445220947, Test loss: 18.27900505065918
+Val acc: 58.1020, Test acc: 0.1168
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.213924247285594 0.13089748407187668
+Epoch 149, Time(s): 10.3657, estimated train loss 1.1734, acc 63.2799
+Evaluation Time: 0.8099565505981445, Val loss: 1.6043353080749512, Test loss: 18.01702117919922
+Val acc: 57.6149, Test acc: 0.1145
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.2230531080909397 0.13638252473395804
+Epoch 150, Time(s): 10.4265, estimated train loss 1.1829, acc 63.0483
+Evaluation Time: 0.8059406280517578, Val loss: 1.5868573188781738, Test loss: 18.332265853881836
+Val acc: 58.0388, Test acc: 0.1145
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.2221097548802693 0.13603856112214102
+Epoch 151, Time(s): 10.3033, estimated train loss 1.1772, acc 63.1959
+Evaluation Time: 0.8170003890991211, Val loss: 1.5881218910217285, Test loss: 18.56778907775879
+Val acc: 58.0311, Test acc: 0.1121
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.2106103085089421 0.13056909822035526
+Epoch 152, Time(s): 10.0043, estimated train loss 1.1668, acc 63.3611
+Evaluation Time: 0.8059794902801514, Val loss: 1.5983110666275024, Test loss: 18.705440521240234
+Val acc: 57.8970, Test acc: 0.1192
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.2072662045990212 0.13226472985917243
+Epoch 153, Time(s): 10.2897, estimated train loss 1.1668, acc 63.3970
+Evaluation Time: 0.8263697624206543, Val loss: 1.6057167053222656, Test loss: 19.269508361816406
+Val acc: 57.9355, Test acc: 0.1121
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.2114175532175147 0.13360482832227927
+Epoch 154, Time(s): 10.3452, estimated train loss 1.1723, acc 63.3147
+Evaluation Time: 0.8168148994445801, Val loss: 1.5874533653259277, Test loss: 18.727453231811523
+Val acc: 58.1282, Test acc: 0.1192
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.1898577593374944 0.12581040235101312
+Epoch 155, Time(s): 10.4071, estimated train loss 1.1456, acc 63.9346
+Evaluation Time: 0.8135244846343994, Val loss: 1.6204451322555542, Test loss: 19.315624237060547
+Val acc: 57.9602, Test acc: 0.1168
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.2103178328362063 0.12778375772894293
+Epoch 156, Time(s): 10.6608, estimated train loss 1.1617, acc 63.5020
+Evaluation Time: 0.8104312419891357, Val loss: 1.6199538707733154, Test loss: 19.031982421875
+Val acc: 57.9201, Test acc: 0.1288
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.2030988758888796 0.1302032947972201
+Epoch 157, Time(s): 10.3581, estimated train loss 1.1589, acc 63.5647
+Evaluation Time: 0.8134582042694092, Val loss: 1.6098719835281372, Test loss: 19.001468658447266
+Val acc: 57.8816, Test acc: 0.1145
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.1974971251211304 0.12916674173396567
+Epoch 158, Time(s): 10.4620, estimated train loss 1.1560, acc 63.5774
+Evaluation Time: 0.8149828910827637, Val loss: 1.6336028575897217, Test loss: 19.441036224365234
+Val acc: 57.9232, Test acc: 0.1097
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.197088866994001 0.12720412782568863
+Epoch 159, Time(s): 10.3769, estimated train loss 1.1512, acc 63.6108
+Evaluation Time: 0.8241348266601562, Val loss: 1.617992639541626, Test loss: 18.794645309448242
+Val acc: 57.8908, Test acc: 0.1145
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.1976001850072888 0.12492193983516832
+Epoch 160, Time(s): 10.3441, estimated train loss 1.1496, acc 63.7053
+Evaluation Time: 0.8147926330566406, Val loss: 1.6093939542770386, Test loss: 19.115341186523438
+Val acc: 57.9448, Test acc: 0.1168
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.2060507397720779 0.12559490067803342
+Epoch 161, Time(s): 10.3507, estimated train loss 1.1544, acc 63.7388
+Evaluation Time: 0.8080079555511475, Val loss: 1.6104612350463867, Test loss: 19.062772750854492
+Val acc: 57.9879, Test acc: 0.1145
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.2011586462242017 0.12789159700058508
+Epoch 162, Time(s): 10.2423, estimated train loss 1.1584, acc 63.7269
+Evaluation Time: 0.811659574508667, Val loss: 1.6221258640289307, Test loss: 19.29936408996582
+Val acc: 57.8616, Test acc: 0.1097
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.2046725698139356 0.13126700133949087
+Epoch 163, Time(s): 10.3947, estimated train loss 1.1633, acc 63.5568
+Evaluation Time: 0.8095293045043945, Val loss: 1.617980718612671, Test loss: 19.47542953491211
+Val acc: 58.1405, Test acc: 0.1145
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.2038039988365725 0.12869219989448355
+Epoch 164, Time(s): 10.2175, estimated train loss 1.1603, acc 63.5522
+Evaluation Time: 0.8078505992889404, Val loss: 1.5955369472503662, Test loss: 18.727066040039062
+Val acc: 57.9432, Test acc: 0.1192
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.2039761232293171 0.13354765645403793
+Epoch 165, Time(s): 10.2707, estimated train loss 1.1642, acc 63.5785
+Evaluation Time: 0.8145031929016113, Val loss: 1.579512596130371, Test loss: 19.178068161010742
+Val acc: 58.3594, Test acc: 0.1192
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.2097375842108242 0.12969660920941312
+Epoch 166, Time(s): 10.3446, estimated train loss 1.1644, acc 63.4359
+Evaluation Time: 0.8163506984710693, Val loss: 1.631941795349121, Test loss: 19.830665588378906
+Val acc: 58.0296, Test acc: 0.1145
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.2125228798907737 0.12907577133265094
+Epoch 167, Time(s): 10.3484, estimated train loss 1.1643, acc 63.5185
+Evaluation Time: 0.8254776000976562, Val loss: 1.610364556312561, Test loss: 19.06324577331543
+Val acc: 57.8461, Test acc: 0.1192
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.1970281410908354 0.12966970224743304
+Epoch 168, Time(s): 10.3880, estimated train loss 1.1560, acc 63.6232
+Evaluation Time: 0.8153927326202393, Val loss: 1.6228833198547363, Test loss: 19.850868225097656
+Val acc: 58.0404, Test acc: 0.1097
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.2135026385818704 0.13016945598781973
+Epoch 169, Time(s): 10.3261, estimated train loss 1.1643, acc 63.4227
+Evaluation Time: 0.8194305896759033, Val loss: 1.620348572731018, Test loss: 18.895193099975586
+Val acc: 57.5101, Test acc: 0.1168
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.19633982838064 0.13054723821688388
+Epoch 170, Time(s): 10.3707, estimated train loss 1.1555, acc 63.7232
+Evaluation Time: 0.8145742416381836, Val loss: 1.5981571674346924, Test loss: 18.877368927001953
+Val acc: 57.9371, Test acc: 0.1168
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.2060406363528708 0.13156975643790286
+Epoch 171, Time(s): 10.3708, estimated train loss 1.1621, acc 63.5698
+Evaluation Time: 0.818627119064331, Val loss: 1.6153807640075684, Test loss: 19.143205642700195
+Val acc: 58.0249, Test acc: 0.1288
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.203206307646157 0.12827565413022388
+Epoch 172, Time(s): 10.2904, estimated train loss 1.1552, acc 63.6119
+Evaluation Time: 0.8079781532287598, Val loss: 1.6095606088638306, Test loss: 19.4212703704834
+Val acc: 58.0157, Test acc: 0.1073
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.1856175211892612 0.12480538964703464
+Epoch 173, Time(s): 10.3510, estimated train loss 1.1421, acc 63.8988
+Evaluation Time: 0.8225865364074707, Val loss: 1.6071138381958008, Test loss: 18.893489837646484
+Val acc: 57.7290, Test acc: 0.1264
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.196641369142394 0.1282252756797749
+Epoch 174, Time(s): 10.3658, estimated train loss 1.1516, acc 63.8420
+Evaluation Time: 0.8299813270568848, Val loss: 1.6208221912384033, Test loss: 19.61284828186035
+Val acc: 57.9633, Test acc: 0.1145
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.1970324792723726 0.1257303447827049
+Epoch 175, Time(s): 10.4841, estimated train loss 1.1479, acc 63.8784
+Evaluation Time: 0.8168118000030518, Val loss: 1.6305972337722778, Test loss: 19.75978660583496
+Val acc: 58.0219, Test acc: 0.1121
+Best Epoch 126,Val 58.3594, Test 0.1216
+1.1783879658450251 0.12321032734884732
+average train times 10.897658193178769
+Best Epoch 126, Val 58.3594, Test 0.1216
+main_path.py:468: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  model.load_state_dict(torch.load(checkpt_file+f'_{stage}.pkl'))
+100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 74/74 [00:08<00:00,  8.90it/s]
+Stage 1 history model:
+	Train acc 67.3999 Val acc 58.3594 Test acc 0.1216
+Stage: 2, threshold 0.6, confident nodes: 71662 / 106818
+		 val confident nodes: 43821 / 64879,  val confident level: 0.7063736319541931
+		test confident nodes: 27841 / 41939, test confident_level: 0.0014008117141202092
+Current num label hops = 4
+Involved label keys ['P', 'PP', 'PAP', 'PFP', 'PPP', 'PAPP', 'PFPP', 'PPAP', 'PPFP', 'PPPP', 'PAIAP', 'PAPAP', 'PAPFP', 'PAPPP', 'PFPAP', 'PFPFP', 'PFPPP', 'PPAPP', 'PPFPP', 'PPPAP', 'PPPFP', 'PPPPP']
+PP tensor(0.4281) tensor(0.3947) tensor(0.0010) tensor(3.8382) tensor(3.4827) tensor(13.6027) tensor(8.4554) tensor(43689.9062) tensor(-10.2053) tensor(71.7839)
+PAP tensor(0.4233) tensor(0.3993) tensor(0.0428) tensor(3.3563) tensor(3.3351) tensor(13.4937) tensor(6.0074) tensor(889.5662) tensor(-0.6352) tensor(75.1269)
+PFP tensor(0.2906) tensor(0.2675) tensor(4.7688e-05) tensor(3.1789) tensor(3.2325) tensor(6.5946) tensor(8.6477) tensor(609372.4375) tensor(1.6578) tensor(51.7947)
+PPP tensor(0.4025) tensor(0.3946) tensor(0.0045) tensor(2.8366) tensor(2.6154) tensor(12.9850) tensor(2.0190) tensor(8832.5000) tensor(-8.4612) tensor(78.1545)
+PAPP tensor(0.4244) tensor(0.4114) tensor(0.0011) tensor(2.4811) tensor(2.4968) tensor(12.9552) tensor(3.1790) tensor(37772.4453) tensor(0.6281) tensor(80.8485)
+PFPP tensor(0.2672) tensor(0.2467) tensor(4.7688e-05) tensor(3.2801) tensor(3.2911) tensor(6.6356) tensor(8.3090) tensor(560143.8750) tensor(0.3331) tensor(50.5683)
+PPAP tensor(0.4212) tensor(0.4078) tensor(0.0011) tensor(2.4886) tensor(2.4453) tensor(13.1184) tensor(3.3028) tensor(37486.8516) tensor(-1.7716) tensor(81.0294)
+PPFP tensor(0.2803) tensor(0.2729) tensor(2.3844e-05) tensor(3.2359) tensor(3.2414) tensor(6.5409) tensor(2.7134) tensor(1175505.1250) tensor(0.1678) tensor(50.5279)
+PPPP tensor(0.4072) tensor(0.3944) tensor(0.0009) tensor(2.4002) tensor(2.3902) tensor(12.1694) tensor(3.2476) tensor(43689.0742) tensor(-0.4174) tensor(80.2767)
+PAIAP tensor(0.1496) tensor(0.1318) tensor(0.0434) tensor(4.4638) tensor(4.4501) tensor(10.6254) tensor(13.5786) tensor(244.4503) tensor(-0.3069) tensor(57.9899)
+PAPAP tensor(0.4131) tensor(0.3951) tensor(0.0428) tensor(3.0752) tensor(3.1041) tensor(13.1087) tensor(4.5525) tensor(865.7756) tensor(0.9306) tensor(76.5405)
+PAPFP tensor(0.2808) tensor(0.2662) tensor(0.) tensor(3.2317) tensor(3.2540) tensor(6.4644) tensor(5.4672) tensor(inf) tensor(0.6851) tensor(50.0079)
+PAPPP tensor(0.4064) tensor(0.3989) tensor(0.0018) tensor(2.3162) tensor(2.3486) tensor(11.8851) tensor(1.8938) tensor(22625.5547) tensor(1.3756) tensor(80.5114)
+PFPAP tensor(0.2749) tensor(0.2549) tensor(4.7688e-05) tensor(3.2635) tensor(3.2963) tensor(6.5546) tensor(7.8529) tensor(576364.6250) tensor(0.9960) tensor(50.2105)
+PFPFP tensor(0.2124) tensor(0.1629) tensor(0.) tensor(3.7570) tensor(3.7899) tensor(6.0890) tensor(30.4183) tensor(inf) tensor(0.8685) tensor(38.2986)
+PFPPP tensor(0.2592) tensor(0.2376) tensor(2.3844e-05) tensor(3.3166) tensor(3.3227) tensor(6.6435) tensor(9.1075) tensor(1087106.7500) tensor(0.1825) tensor(50.0768)
+PPAPP tensor(0.3915) tensor(0.3852) tensor(0.0016) tensor(2.4327) tensor(2.4339) tensor(11.8543) tensor(1.6301) tensor(24775.7324) tensor(0.0482) tensor(79.4781)
+PPFPP tensor(0.2591) tensor(0.2538) tensor(0.) tensor(3.3539) tensor(3.3070) tensor(6.5941) tensor(2.0615) tensor(inf) tensor(-1.4191) tensor(49.1372)
+PPPAP tensor(0.4086) tensor(0.4003) tensor(0.0018) tensor(2.2714) tensor(2.3256) tensor(12.0237) tensor(2.0707) tensor(22449.6855) tensor(2.3295) tensor(81.1090)
+PPPFP tensor(0.2760) tensor(0.2638) tensor(2.3844e-05) tensor(3.2551) tensor(3.2728) tensor(6.4705) tensor(4.6120) tensor(1157405.7500) tensor(0.5393) tensor(49.6927)
+PPPPP tensor(0.3735) tensor(0.3739) tensor(0.0044) tensor(2.5130) tensor(2.4786) tensor(11.3594) tensor(-0.1196) tensor(8366.6846) tensor(-1.3864) tensor(77.8773)
+{'PP', 'PAIAP', 'PAPPP', 'PPFPP', 'PFPFP', 'PPAP', 'PFPAP', 'PPPFP', 'PPPP', 'PPPPP', 'PFPPP', 'PAPFP', 'PAPP', 'PAP', 'PPP', 'PFPP', 'PAPAP', 'PPAPP', 'PPFP', 'PFP', 'PPPAP'}
+tensor(0.6773)
+tensor(0.6373)
+tensor(0.0670)
+label_emb tensor(0.4330) tensor(0.4167) tensor(0.0010) tensor(2.3541) tensor(2.4627) tensor(7.1389) tensor(3.9011) tensor(45299.2617) tensor(4.4080) tensor(67.0241)
+{'label_emb'}
+tensor(0.4330)
+tensor(0.4167)
+tensor(0.0010)
+2.566016398685079 1.1298374701553666
+Epoch 0, Time(s): 10.7437, estimated train loss 2.8819, acc 42.5264
+Evaluation Time: 0.7460970878601074, Val loss: 1.947965383529663, Test loss: 9.416243553161621
+Val acc: 51.3124, Test acc: 0.1526
+Best Epoch 0,Val 51.3124, Test 0.1526
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:626: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+1.9365194817663918 0.5912165839067647
+Epoch 1, Time(s): 10.6119, estimated train loss 2.0409, acc 49.7355
+Evaluation Time: 0.8029003143310547, Val loss: 1.7692865133285522, Test loss: 12.462359428405762
+Val acc: 54.1470, Test acc: 0.1407
+Best Epoch 1,Val 54.1470, Test 0.1407
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:626: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
+1.7831590293158948 0.46511133497869467
+Epoch 2, Time(s): 10.6751, estimated train loss 1.8390, acc 52.5210
+Evaluation Time: 0.8105740547180176, Val loss: 1.707863450050354, Test loss: 12.77938461303711
+Val acc: 55.3107, Test acc: 0.1454
+Best Epoch 2,Val 55.3107, Test 0.1454
+/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/utils.py:626: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast():
