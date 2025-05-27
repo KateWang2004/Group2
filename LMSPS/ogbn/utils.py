@@ -1006,12 +1006,12 @@ def load_mag(args,symmetric=True):
     feature_node_types = [target_node_type]
 
     # Debug print the shapes
-    print(target_node_type, feature_node_types, labels.shape, n_classes, 
-          tuple(train_nid.shape), tuple(val_nid.shape), tuple(test_nid.shape))  # Convert to tuple for desired format
+    # print(target_node_type, feature_node_types, labels.shape, n_classes, 
+    #       tuple(train_nid.shape), tuple(val_nid.shape), tuple(test_nid.shape))  # Convert to tuple for desired format
 
-    print(labels.min(), labels.max())
-    print("test labels: ", labels[test_nid].min(), labels[test_nid].max())
-    print("train labels: ", labels[train_nid].min(), labels[train_nid].max())
+    # print(labels.min(), labels.max())
+    # print("test labels: ", labels[test_nid].min(), labels[test_nid].max())
+    # print("train labels: ", labels[train_nid].min(), labels[train_nid].max())
     labels[test_nid] = 0
     evaluator = get_ogb_evaluator(args.dataset)
 

@@ -5,3 +5,4 @@
 data/
 hgb/output/
 ogbn/output/
+wandb/

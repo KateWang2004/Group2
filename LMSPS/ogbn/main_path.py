@@ -136,7 +136,7 @@ def main(args):
     all_loader = torch.utils.data.DataLoader(
         torch.arange(num_nodes), batch_size=args.batch_size, shuffle=False, drop_last=False)
 
-    checkpt_folder = f'./output/{args.dataset}/'
+    checkpt_folder = f'./output/test2/'
     if not os.path.exists(checkpt_folder):
         os.makedirs(checkpt_folder)
 
@@ -148,15 +148,19 @@ def main(args):
     device = "cuda:{}".format(args.gpu) if not args.cpu else 'cpu'
     labels_cuda = labels.long().to(device)
 
-    checkpt_folder = os.path.join(checkpt_folder, 'test')
-    checkpt_file = checkpt_folder + uuid.uuid4().hex
+    timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+    checkpt_folder = os.path.join(checkpt_folder, f'model_{timestamp}/')
+    if( not os.path.exists(checkpt_folder)):
+        os.makedirs(checkpt_folder)
+    checkpt_file = os.path.join(checkpt_folder, f"model_stage")
+    # checkpt_file = checkpt_folder + uuid.uuid4().hex
     print(checkpt_file)
 
     for stage in range(args.start_stage, len(args.stages)):
         epochs = args.stages[stage]
 
         if len(args.reload):
-            pt_path = f'output/ogbn-mag/{args.reload}_{stage-1}.pt'
+            pt_path = f'output/test2/{args.reload}_{stage-1}.pt'
             assert os.path.exists(pt_path)
             print(f'Reload raw_preds from {pt_path}', flush=True)
             raw_preds = torch.load(pt_path, map_location='cpu')
@@ -178,13 +182,14 @@ def main(args):
             # import pdb; pdb.set_trace()
 
             confident_mask = predict_prob.max(1)[0] > args.threshold
+            # confident_mask2 = predict_prob.max(1)[0] > 0.85
             val_enhance_offset  = torch.where(confident_mask[trainval_point:valtest_point])[0]
             test_enhance_offset = torch.where(confident_mask[valtest_point:total_num_nodes])[0]
+            # train_enhance_nid = torch.where(confident_mask2[:trainval_point])[0]
             val_enhance_nid     = val_enhance_offset + trainval_point
             test_enhance_nid    = test_enhance_offset + valtest_point
             enhance_nid = torch.cat((val_enhance_nid, test_enhance_nid))
-            # enhance_nid = val_enhance_nid
-
+            # enhance_nid = torch.cat((train_enhance_nid,val_enhance_nid))
             print(f'Stage: {stage}, threshold {args.threshold}, confident nodes: {len(enhance_nid)} / {total_num_nodes - trainval_point}')
             val_confident_level = (predict_prob[val_enhance_nid].argmax(1) == labels[val_enhance_nid]).sum() / len(val_enhance_nid)
             print(f'\t\t val confident nodes: {len(val_enhance_nid)} / {valid_node_nums},  val confident level: {val_confident_level}')
@@ -291,7 +296,7 @@ def main(args):
                 g = hg_propagate(g, tgt_type, args.num_label_hops, max_hops, extra_metapath, echo=False)
 
                 keys = list(g.nodes[tgt_type].data.keys())
-                print(f'Involved label keys {keys}')
+                # print(f'Involved label keys {keys}')
                 for k in keys:
                     if k == tgt_type: continue
                     label_feats[k] = g.nodes[tgt_type].data.pop(k)
@@ -473,7 +478,7 @@ def main(args):
         model.load_state_dict(torch.load(checkpt_file+f'_{stage}.pkl'))
 
         raw_preds = gen_output_torch(model, feats, label_feats, label_emb, all_loader, device)
-        
+
         # Save final predictions.csv as predictions_{best_val_acc}.csv
         val_acc_str = f"{best_val_acc * 100:.2f}".replace('.', '_')
         os.rename('./predictions.csv', f'./predictions_{val_acc_str}.csv')
@@ -485,13 +490,13 @@ def main(args):
 def parse_args(args=None):
     parser = argparse.ArgumentParser(description='LMSPS')
     ## For environment costruction
-    parser.add_argument("--seeds", nargs='+', type=int, default=[2],
+    parser.add_argument("--seeds", nargs='+', type=int, default=[3],
                         help="the seed used in the training")
     parser.add_argument("--dataset", type=str, default="ogbn-mag")
     parser.add_argument("--gpu", type=int, default=0)
     parser.add_argument("--cpu", action='store_true', default=False)
     parser.add_argument("--root", type=str, default='../data/')
-    parser.add_argument("--stages", nargs='+',type=int, default=[200, 200, 200, 200, 200, 200, 200],
+    parser.add_argument("--stages", nargs='+',type=int, default=[200, 200, 200, 200, 200, 300],
                         help="The epoch setting for each stage.")
     ## For pre-processing
     parser.add_argument("--emb_path", type=str, default='../data/')
