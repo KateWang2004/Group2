@@ -1,0 +1,7 @@
+{"time":"2025-05-27T02:02:40.739743449+08:00","level":"INFO","msg":"stream: starting","core version":"0.19.11","symlink path":"/data/wanglonghao_space/Projects/RGCN/LMSPS/ogbn/wandb/run-20250527_020240-5gqbxsr9/logs/debug-core.log"}
+{"time":"2025-05-27T02:02:41.332572419+08:00","level":"INFO","msg":"created new stream","id":"5gqbxsr9"}
+{"time":"2025-05-27T02:02:41.332616668+08:00","level":"INFO","msg":"stream: started","id":"5gqbxsr9"}
+{"time":"2025-05-27T02:02:41.332641374+08:00","level":"INFO","msg":"sender: started","stream_id":"5gqbxsr9"}
+{"time":"2025-05-27T02:02:41.332645536+08:00","level":"INFO","msg":"writer: Do: started","stream_id":"5gqbxsr9"}
+{"time":"2025-05-27T02:02:41.332681616+08:00","level":"INFO","msg":"handler: started","stream_id":"5gqbxsr9"}
+{"time":"2025-05-27T02:02:41.647668184+08:00","level":"INFO","msg":"Starting system monitor"}

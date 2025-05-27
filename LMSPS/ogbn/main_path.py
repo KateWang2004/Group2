@@ -169,13 +169,13 @@ def main(args):
             predict_prob = raw_preds.softmax(dim=1)
 
             train_acc = evaluator(preds[:trainval_point], labels[:trainval_point])
-            val_acc = evaluator(preds[trainval_point:valtest_point], labelslabel_onehot[trainval_point:valtest_point])
+            val_acc = evaluator(preds[trainval_point:valtest_point], labels[trainval_point:valtest_point])
             test_acc = evaluator(preds[valtest_point:total_num_nodes], labels[valtest_point:total_num_nodes])
 
             print(f'Stage {stage-1} history model:\n\t' \
                 + f'Train acc {train_acc*100:.4f} Val acc {val_acc*100:.4f} Test acc {test_acc*100:.4f}')
             
-            import pdb; pdb.set_trace()
+            # import pdb; pdb.set_trace()
 
             confident_mask = predict_prob.max(1)[0] > args.threshold
             val_enhance_offset  = torch.where(confident_mask[trainval_point:valtest_point])[0]
@@ -183,6 +183,7 @@ def main(args):
             val_enhance_nid     = val_enhance_offset + trainval_point
             test_enhance_nid    = test_enhance_offset + valtest_point
             enhance_nid = torch.cat((val_enhance_nid, test_enhance_nid))
+            # enhance_nid = val_enhance_nid
 
             print(f'Stage: {stage}, threshold {args.threshold}, confident nodes: {len(enhance_nid)} / {total_num_nodes - trainval_point}')
             val_confident_level = (predict_prob[val_enhance_nid].argmax(1) == labels[val_enhance_nid]).sum() / len(val_enhance_nid)
@@ -389,6 +390,7 @@ def main(args):
 
         train_times = []
 
+        best_results = []
 
         for epoch in range(epochs):
             gc.collect()
@@ -471,6 +473,10 @@ def main(args):
         model.load_state_dict(torch.load(checkpt_file+f'_{stage}.pkl'))
 
         raw_preds = gen_output_torch(model, feats, label_feats, label_emb, all_loader, device)
+        
+        # Save final predictions.csv as predictions_{best_val_acc}.csv
+        val_acc_str = f"{best_val_acc * 100:.2f}".replace('.', '_')
+        os.rename('./predictions.csv', f'./predictions_{val_acc_str}.csv')
 
   
     return [round(best_val_acc * 100, 2), round(best_test_acc * 100, 2)]
@@ -485,7 +491,7 @@ def parse_args(args=None):
     parser.add_argument("--gpu", type=int, default=0)
     parser.add_argument("--cpu", action='store_true', default=False)
     parser.add_argument("--root", type=str, default='../data/')
-    parser.add_argument("--stages", nargs='+',type=int, default=[400, 400, 400, 400, 400, 400],
+    parser.add_argument("--stages", nargs='+',type=int, default=[200, 200, 200, 200, 200, 200, 200],
                         help="The epoch setting for each stage.")
     ## For pre-processing
     parser.add_argument("--emb_path", type=str, default='../data/')

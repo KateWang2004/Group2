@@ -20,3 +20,4 @@ config: {'seeds': [2], 'dataset': 'ogbn-mag', 'gpu': 0, 'cpu': False, 'root': '.
 2025-05-26 23:37:28,256 INFO    MainThread:1654164 [wandb_run.py:_redirect():2490] Wrapping output streams.
 2025-05-26 23:37:28,256 INFO    MainThread:1654164 [wandb_run.py:_redirect():2513] Redirects installed.
 2025-05-26 23:37:28,261 INFO    MainThread:1654164 [wandb_init.py:init():1150] run started, returning control to user process
+2025-05-27 03:06:59,296 INFO    MsgRouterThr:1654164 [mailbox.py:close():129] [no run ID] Closing mailbox, abandoning 1 handles.
