@@ -1,0 +1,5 @@
+/output/
+/wandb/
+*.csv
+mag.p
+ogbn-mag_feats.pt
