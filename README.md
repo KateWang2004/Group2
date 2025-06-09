@@ -12,4 +12,5 @@
 然后运行`sh scripts/run_Masked.sh`,预测结果保存在`test_y_pred.csv`。
 
 ## HGAMLP
-另一个分支中。
+在HGAMLP分支中。
+切换到分支后，按照README配环境(可以和LMSPS共享一份环境)，随后修改传入参数`num-hops`或者其他相关参数即可获得不同实验结果，最终结果保存在`predictions_{best_val_accuracy}.csv`中。
