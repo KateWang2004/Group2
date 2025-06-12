@@ -24,6 +24,6 @@ For experiments on the large dataset ogbn-mag, the dataset will be automatically
 ## Run HGAMLP for OGB Leaderboards (ogbn-mag) 
 python main.py --stages 400 400 400 500 --extra-embedding Line --num-hops 2 --label-feats --num-label-hops 2 --n-layers-1 2 --n-layers-2 2 --n-layers-3 3  --act leaky_relu --bns --label-bns --lr 0.002 --weight-decay 0 --threshold 0.75 --patience 100 --gama 10 --amp --seeds 0 1 2 3 4 5 6 7 8 9 --gpu 0
 
-python main.py --stages 400 400 400 500 --extra-embedding Line  --num-hops 2 --label-feats --num-label-hops 2 --n-layers-1 2 --n-layers-2 2 --n-layers-3 3  --act leaky_relu --bns --label-bns --lr 0.002 --weight-decay 0 --threshold 0.75 --patience 100 --gama 10 --amp --seeds 1 --gpu 1  --use-wandb   --wandb-project hgamlo   --run-name seed1_try_emb
+python main.py --stages 400 400 400 500 --extra-embedding Line  --num-hops 3 --label-feats --num-label-hops 2 --n-layers-1 2 --n-layers-2 2 --n-layers-3 3  --act leaky_relu --bns --label-bns --lr 0.002 --weight-decay 0 --threshold 0.75 --patience 100 --gama 10 --amp --seeds 1 --gpu 1
 
-python main.py --stages 400 400 400 400 400 400 --extra-embedding Line  --num-hops 6 --label-feats --num-label-hops 4 --n-layers-1 2 --n-layers-2 2 --n-layers-3 3  --act leaky_relu --bns --label-bns --lr 0.002 --weight-decay 0 --threshold 0.6 --patience 100 --gama 10 --amp --seeds 2 --gpu 2  --use-wandb   --wandb-project hgamlp  --lm True --run-name seed2_try_mh_emb
+python main.py --stages 400 400 400 400 400 400 --extra-embedding Line  --num-hops 6 --label-feats --num-label-hops 4 --n-layers-1 2 --n-layers-2 2 --n-layers-3 3  --act leaky_relu --bns --label-bns --lr 0.002 --weight-decay 0 --threshold 0.6 --patience 100 --gama 10 --amp --seeds 2 --gpu 2
